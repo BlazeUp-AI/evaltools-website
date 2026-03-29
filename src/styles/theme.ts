@@ -114,7 +114,7 @@ export const S: Styles = {
     transition: "transform 0.15s, box-shadow 0.2s",
   },
   section: {
-    maxWidth: 1180, margin: "0 auto", padding: "0 32px",
+    maxWidth: 1440, margin: "0 auto", padding: "0 32px",
   },
 
   // ─ Hero ─

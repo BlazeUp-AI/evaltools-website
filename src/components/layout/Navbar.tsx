@@ -32,7 +32,7 @@ export default function Navbar() {
           <line x1="8" y1="16" x2="11" y2="14" stroke={palette.accent} strokeWidth="0.8" opacity="0.3" />
           <line x1="18" y1="16" x2="15" y2="14" stroke={palette.accent} strokeWidth="0.8" opacity="0.3" />
         </svg>
-        CouncilEval
+        <span style={{ fontWeight: 600, letterSpacing: "0.10em" }}>LLM Evaluator</span>
       </div>
       <div style={S.navLinks}>
         <a style={S.navLink} href="#pillars">Platform</a>
