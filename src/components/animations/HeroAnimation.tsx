@@ -1,28 +1,26 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, CSSProperties } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 export default function HeroAnimation() {
   const container = useRef<HTMLDivElement>(null);
-  
-  // Refs
+
   const leftTerminal = useRef<HTMLDivElement>(null);
   const terminalCmd = useRef<HTMLDivElement>(null);
   const publishLine = useRef<HTMLDivElement>(null);
   const publishDot = useRef<HTMLDivElement>(null);
-  
+
   const centerHub = useRef<HTMLDivElement>(null);
   const mcpCount = useRef<HTMLSpanElement>(null);
   const newMcpBadge = useRef<HTMLSpanElement>(null);
-  
+
   const rightAgents = useRef<HTMLDivElement>(null);
   const agentLines = useRef<HTMLDivElement[]>([]);
   const trafficDots = useRef<HTMLDivElement[]>([]);
   const logEntries = useRef<HTMLDivElement[]>([]);
 
-  // Array ref helpers
   const addAgentLine = (el: HTMLDivElement | null) => { if (el && !agentLines.current.includes(el)) agentLines.current.push(el); };
   const addTrafficDot = (el: HTMLDivElement | null) => { if (el && !trafficDots.current.includes(el)) trafficDots.current.push(el); };
   const addLogEntry = (el: HTMLDivElement | null) => { if (el && !logEntries.current.includes(el)) logEntries.current.push(el); };
@@ -30,66 +28,53 @@ export default function HeroAnimation() {
   useGSAP(() => {
       const tl = gsap.timeline({ repeat: -1 });
 
-      // Step 0: Strict Initialization
       tl.set([leftTerminal.current, centerHub.current, rightAgents.current], { opacity: 0, y: 15 })
         .set(terminalCmd.current, { width: 0 })
         .set(publishLine.current, { scaleY: 0, transformOrigin: "top center" })
         .set(publishDot.current, { opacity: 0, top: "0%" })
         .set(newMcpBadge.current, { opacity: 0, scale: 0.8, x: -10 })
         .set(agentLines.current, { scaleX: 0, transformOrigin: "left center" })
-        .set(trafficDots.current, { opacity: 0, left: "100%" }) // Start at agents, moving to hub
+        .set(trafficDots.current, { opacity: 0, left: "100%" })
         .set(logEntries.current, { opacity: 0, x: -10 })
         .set(mcpCount.current, { innerText: "12" });
 
-      // Step 1: Register Tool (Terminal Types)
       tl.to(leftTerminal.current, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" })
         .to(terminalCmd.current, { width: "100%", duration: 1.2, ease: "steps(20)" });
 
-      // Step 2: Hub Appears
       tl.to(centerHub.current, { opacity: 1, y: 0, duration: 0.6, ease: "back.out(1.2)" }, "+=0.2");
 
-      // Step 2.5: Top Connector Animates (Terminal -> Hub vertically)
       tl.to(publishLine.current, { scaleY: 1, duration: 0.6, ease: "power2.inOut" }, "-=0.2")
-        .fromTo(publishDot.current, 
-            { opacity: 0, top: "0%" }, 
-            { opacity: 1, top: "100%", duration: 0.8, ease: "power1.inOut" }, 
-            "<" // Sync with line
+        .fromTo(publishDot.current,
+            { opacity: 0, top: "0%" },
+            { opacity: 1, top: "100%", duration: 0.8, ease: "power1.inOut" },
+            "<"
         )
         .to(publishDot.current, { opacity: 0, duration: 0.1 });
 
-      // Step 2.6: Hub Accepts & Updates
       tl.to(mcpCount.current, { innerText: "13", duration: 0.2, snap: "innerText" })
         .to(newMcpBadge.current, { opacity: 1, scale: 1, x: 0, duration: 0.4, ease: "back.out(2)" })
         .to(centerHub.current, { boxShadow: "0 0 30px rgba(122, 245, 202, 0.1)", duration: 0.4 });
 
-      // Step 3: Agents Connect (Hub <-> Agents)
       tl.to(rightAgents.current, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, "+=0.3")
         .to(agentLines.current, { scaleX: 1, duration: 0.6, stagger: 0.1, ease: "power2.inOut" }, "-=0.3")
-        
-        // Traffic dots flow from Agents to Hub (Requests)
-        .fromTo(trafficDots.current, 
-            { opacity: 0, left: "100%" }, 
-            { opacity: 1, left: "0%", duration: 1, stagger: 0.2, ease: "power1.inOut" }, 
+        .fromTo(trafficDots.current,
+            { opacity: 0, left: "100%" },
+            { opacity: 1, left: "0%", duration: 1, stagger: 0.2, ease: "power1.inOut" },
             "-=0.2"
         )
         .to(trafficDots.current, { opacity: 0, duration: 0.1 });
 
-      // Step 4: Observability Kick-in (Logs appear in Hub)
       tl.to(logEntries.current, { opacity: 1, x: 0, duration: 0.4, stagger: 0.25, ease: "power2.out" }, "-=0.5");
 
-      // Step 5: Reset
-      tl.to({}, { duration: 4 }) // Hold to read
-        .to([leftTerminal.current, centerHub.current, rightAgents.current, agentLines.current, publishLine.current], { 
-            opacity: 0, 
-            y: -10,
-            duration: 0.8, 
-            ease: "power2.inOut" 
+      tl.to({}, { duration: 4 })
+        .to([leftTerminal.current, centerHub.current, rightAgents.current, agentLines.current, publishLine.current], {
+            opacity: 0, y: -10, duration: 0.8, ease: "power2.inOut"
         });
 
   }, { scope: container });
 
   return (
-      <div ref={container} className="relative w-full max-w-6xl mx-auto h-[650px] flex items-center justify-center font-mono text-sm overflow-hidden select-none" style={{ color: "#e4e5eb" }}>
+      <div ref={container} style={s.container}>
           <style>{`
             .cursor-blink { animation: blink 1s step-end infinite; }
             @keyframes blink { 50% { opacity: 0; } }
@@ -98,163 +83,461 @@ export default function HeroAnimation() {
             .log-scroll::-webkit-scrollbar-thumb { background: #1e2130; border-radius: 4px; }
           `}</style>
 
-          {/* Background Grid Elements for Enterprise Feel */}
-          <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(30,33,48,0.3)_1px,transparent_1px)] bg-[size:24px_24px] opacity-40"></div>
+          {/* Background Grid */}
+          <div style={s.bgGrid} />
 
-          {/* Connection Tracks - Pushed down to prevent top cutoff */}
-          <div className="absolute inset-0 z-0 flex items-center w-full pointer-events-none translate-y-12">
-              {/* Agent Tracks (Center to Right) - Top Agent */}
-              <div className="absolute left-[58%] top-[calc(50%-45px)] w-[24%] h-[1px] bg-transparent">
-                  <div ref={addAgentLine} className="w-full h-full bg-[#7af5ca]/60 shadow-[0_0_10px_rgba(122,245,202,0.3)]" />
-                  <div ref={addTrafficDot} className="absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#7af5ca] shadow-[0_0_10px_#7af5ca] -ml-[4px]" />
+          {/* Connection Tracks */}
+          <div style={s.trackContainer}>
+              {/* Top Agent Track */}
+              <div style={{ ...s.trackBase, left: "58%", top: "calc(50% - 45px)" }}>
+                  <div ref={addAgentLine} style={{ ...s.trackLine, background: "rgba(122,245,202,0.6)", boxShadow: "0 0 10px rgba(122,245,202,0.3)" }} />
+                  <div ref={addTrafficDot} style={{ ...s.trafficDot, background: "#7af5ca", boxShadow: "0 0 10px #7af5ca" }} />
               </div>
-              
-              {/* Agent Tracks (Center to Right) - Bottom Agent */}
-              <div className="absolute left-[58%] top-[calc(50%+45px)] w-[24%] h-[1px] bg-transparent">
-                  <div ref={addAgentLine} className="w-full h-full bg-[#f5c87a]/60 shadow-[0_0_10px_rgba(245,200,122,0.3)]" />
-                  <div ref={addTrafficDot} className="absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#f5c87a] shadow-[0_0_10px_#f5c87a] -ml-[4px]" />
+              {/* Bottom Agent Track */}
+              <div style={{ ...s.trackBase, left: "58%", top: "calc(50% + 45px)" }}>
+                  <div ref={addAgentLine} style={{ ...s.trackLine, background: "rgba(245,200,122,0.6)", boxShadow: "0 0 10px rgba(245,200,122,0.3)" }} />
+                  <div ref={addTrafficDot} style={{ ...s.trafficDot, background: "#f5c87a", boxShadow: "0 0 10px #f5c87a" }} />
               </div>
           </div>
 
-          {/* Main Layout Grid - Pushed down to prevent top cutoff */}
-          <div className="flex justify-between items-stretch w-full z-10 px-8 gap-4 translate-y-12">
-              
-              {/* 1. Dummy placeholder to maintain identical layout and prevent shifting */}
-              <div className="w-[280px] pointer-events-none"></div>
+          {/* Main Layout */}
+          <div style={s.mainLayout}>
 
-              {/* 2. Observal Hub (Center) and Top Terminal */}
-              <div className="w-[380px] flex flex-col justify-center relative">
-                  
-                  {/* Top Terminal (Platform Eng) - Positioned above the hub */}
-                  <div className="absolute bottom-[calc(100%+32px)] left-1/2 -translate-x-1/2 w-[280px]">
-                      <div ref={leftTerminal} className="bg-[#13151c] border border-[#1e2130] rounded-xl p-5 shadow-2xl relative">
-                          <div className="text-[10px] text-[#8b8fa6] mb-4 tracking-widest uppercase border-b border-[#1e2130]/50 pb-2">Platform Eng</div>
-                          <div className="flex gap-1.5 mb-3">
-                              <div className="w-2.5 h-2.5 rounded-full bg-[#1e2130]"></div>
-                              <div className="w-2.5 h-2.5 rounded-full bg-[#1e2130]"></div>
+              {/* Spacer */}
+              <div style={{ width: 280, pointerEvents: "none" }} />
+
+              {/* Center Column: Terminal + Hub */}
+              <div style={s.centerColumn}>
+
+                  {/* Terminal */}
+                  <div style={s.terminalWrap}>
+                      <div ref={leftTerminal} style={s.terminal}>
+                          <div style={s.termLabel}>Platform Eng</div>
+                          <div style={{ display: "flex", gap: 6, marginBottom: 12 }}>
+                              <div style={s.termDot} />
+                              <div style={s.termDot} />
                           </div>
-                          <div className="text-[#e4e5eb] h-10 flex flex-col text-[12px] leading-relaxed">
-                              <span className="text-[#8b8fa6]">~/observal-cli</span>
-                              <div className="flex items-center mt-1">
-                                  <span className="text-[#7af5ca]/80 mr-2">❯</span>
-                                  <div ref={terminalCmd} className="overflow-hidden whitespace-nowrap">
-                                      <span className="text-[#e4e5eb]">mcp register db-core</span>
+                          <div style={s.termBody}>
+                              <span style={{ color: "#8b8fa6" }}>~/observal-cli</span>
+                              <div style={{ display: "flex", alignItems: "center", marginTop: 4 }}>
+                                  <span style={{ color: "rgba(122,245,202,0.8)", marginRight: 8 }}>❯</span>
+                                  <div ref={terminalCmd} style={{ overflow: "hidden", whiteSpace: "nowrap" }}>
+                                      <span style={{ color: "#e4e5eb" }}>mcp register db-core</span>
                                   </div>
-                                  <span className="inline-block w-[6px] h-[12px] bg-[#e4e5eb]/80 ml-1 cursor-blink"></span>
+                                  <span className="cursor-blink" style={{ display: "inline-block", width: 6, height: 12, background: "rgba(228,229,235,0.8)", marginLeft: 4 }} />
                               </div>
                           </div>
                       </div>
                   </div>
 
-                  {/* Vertical Publish Connector */}
-                  <div className="absolute bottom-[100%] left-1/2 -translate-x-1/2 w-[1px] h-[32px] bg-transparent">
-                      <div ref={publishLine} className="w-full h-full bg-[#e4e5eb]/60 shadow-[0_0_10px_rgba(228,229,235,0.3)]" />
-                      <div ref={publishDot} className="absolute left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[#e4e5eb] shadow-[0_0_10px_#e4e5eb] -mt-[4px]" />
+                  {/* Vertical Connector */}
+                  <div style={s.connectorWrap}>
+                      <div ref={publishLine} style={s.connectorLine} />
+                      <div ref={publishDot} style={s.connectorDot} />
                   </div>
 
                   {/* Hub Panel */}
-                  <div ref={centerHub} className="bg-[#0b0c10] border border-[#1e2130] rounded-xl shadow-2xl overflow-hidden flex flex-col h-[320px]">
-                      
-                      {/* Hub Header / Registry Stats */}
-                      <div className="bg-[#13151c] p-4 border-b border-[#1e2130] flex items-center justify-between relative z-20">
-                          <div className="flex items-center gap-3">
-                              <div className="w-8 h-8 rounded-lg bg-[#08090c] border border-[#1e2130] flex items-center justify-center text-[#7af5ca] shadow-[0_0_10px_rgba(122,245,202,0.1)]">
+                  <div ref={centerHub} style={s.hub}>
+                      {/* Hub Header */}
+                      <div style={s.hubHeader}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                              <div style={s.hubIcon}>
                                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                               </div>
                               <div>
-                                  <h3 className="text-[#e4e5eb] font-bold text-[14px]">Observal Hub</h3>
-                                  <p className="text-[10px] text-[#8b8fa6] tracking-wide mt-0.5">CENTRAL REGISTRY</p>
+                                  <h3 style={{ color: "#e4e5eb", fontWeight: 700, fontSize: 14, margin: 0 }}>Observal Hub</h3>
+                                  <p style={{ fontSize: 10, color: "#8b8fa6", letterSpacing: "0.05em", marginTop: 2 }}>CENTRAL REGISTRY</p>
                               </div>
                           </div>
-                          <div className="text-right">
-                              <div className="text-[20px] font-bold text-[#e4e5eb] leading-none flex items-center justify-end gap-2">
+                          <div style={{ textAlign: "right" }}>
+                              <div style={{ fontSize: 20, fontWeight: 700, color: "#e4e5eb", lineHeight: 1, display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8 }}>
                                   <span ref={mcpCount}>12</span>
-                                  <span className="text-[10px] text-[#8b8fa6] font-normal mt-1">MCPs</span>
+                                  <span style={{ fontSize: 10, color: "#8b8fa6", fontWeight: 400, marginTop: 4 }}>MCPs</span>
                               </div>
                           </div>
                       </div>
 
-                      {/* Active MCP List (Visual only) */}
-                      <div className="px-4 py-3 border-b border-[#1e2130]/50 flex gap-2 overflow-hidden">
-                          <span className="text-[10px] bg-[#08090c] border border-[#1e2130] text-[#8b8fa6] px-2 py-1 rounded">stripe-mcp</span>
-                          <span className="text-[10px] bg-[#08090c] border border-[#1e2130] text-[#8b8fa6] px-2 py-1 rounded">git-mcp</span>
-                          <span ref={newMcpBadge} className="text-[10px] bg-[#7af5ca]/10 border border-[#7af5ca]/50 text-[#7af5ca] px-2 py-1 rounded font-bold">db-core ✓</span>
+                      {/* MCP List */}
+                      <div style={s.mcpList}>
+                          <span style={s.mcpChip}>stripe-mcp</span>
+                          <span style={s.mcpChip}>git-mcp</span>
+                          <span ref={newMcpBadge} style={s.mcpChipNew}>db-core ✓</span>
                       </div>
 
-                      {/* Telemetry / Observability Panel */}
-                      <div className="p-4 flex-1 bg-[#0b0c10] flex flex-col relative">
-                          <div className="text-[10px] text-[#8b8fa6] mb-3 flex justify-between tracking-widest uppercase">
+                      {/* Telemetry */}
+                      <div style={s.telemetry}>
+                          <div style={s.telemetryHeader}>
                               <span>Live Telemetry</span>
-                              <span className="flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-[#7af5ca] animate-pulse"></div> Rec</span>
+                              <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                                  <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#7af5ca" }} /> Rec
+                              </span>
                           </div>
-                          
-                          <div className="space-y-2.5 text-[11px] log-scroll overflow-hidden flex-1 relative">
-                              <div className="absolute top-0 left-3 bottom-0 w-[1px] bg-[#1e2130]/50"></div>
-                              
-                              <div ref={addLogEntry} className="flex gap-3 relative pl-6">
-                                  <div className="absolute left-[-2px] top-1.5 w-1.5 h-1.5 rounded-full bg-[#8b8fa6] border border-[#0b0c10]"></div>
-                                  <span className="text-[#8b8fa6] w-12 shrink-0">14:02</span>
-                                  <span className="text-[#e4e5eb]">Health check: db-core</span>
+
+                          <div className="log-scroll" style={s.logArea}>
+                              <div style={s.logTimeline} />
+
+                              <div ref={addLogEntry} style={s.logRow}>
+                                  <div style={{ ...s.logDot, background: "#8b8fa6" }} />
+                                  <span style={s.logTime}>14:02</span>
+                                  <span style={{ color: "#e4e5eb" }}>Health check: db-core</span>
                               </div>
 
-                              <div ref={addLogEntry} className="flex gap-3 relative pl-6">
-                                  <div className="absolute left-[-2px] top-1.5 w-1.5 h-1.5 rounded-full bg-[#7af5ca] border border-[#0b0c10] shadow-[0_0_5px_#7af5ca]"></div>
-                                  <span className="text-[#8b8fa6] w-12 shrink-0">14:03</span>
-                                  <span><span className="text-[#e4e5eb]">CodeBot</span> → <span className="text-[#7af5ca]">git-mcp</span> (12ms)</span>
+                              <div ref={addLogEntry} style={s.logRow}>
+                                  <div style={{ ...s.logDot, background: "#7af5ca", boxShadow: "0 0 5px #7af5ca" }} />
+                                  <span style={s.logTime}>14:03</span>
+                                  <span><span style={{ color: "#e4e5eb" }}>CodeBot</span> → <span style={{ color: "#7af5ca" }}>git-mcp</span> (12ms)</span>
                               </div>
 
-                              <div ref={addLogEntry} className="flex gap-3 relative pl-6">
-                                  <div className="absolute left-[-2px] top-1.5 w-1.5 h-1.5 rounded-full bg-[#f5c87a] border border-[#0b0c10] shadow-[0_0_5px_#f5c87a]"></div>
-                                  <span className="text-[#8b8fa6] w-12 shrink-0">14:03</span>
-                                  <span><span className="text-[#e4e5eb]">SalesBot</span> → <span className="text-[#f5c87a]">stripe-mcp</span></span>
+                              <div ref={addLogEntry} style={s.logRow}>
+                                  <div style={{ ...s.logDot, background: "#f5c87a", boxShadow: "0 0 5px #f5c87a" }} />
+                                  <span style={s.logTime}>14:03</span>
+                                  <span><span style={{ color: "#e4e5eb" }}>SalesBot</span> → <span style={{ color: "#f5c87a" }}>stripe-mcp</span></span>
                               </div>
-                              
-                              {/* Warning detail row */}
-                              <div ref={addLogEntry} className="flex gap-3 relative pl-6 mt-1">
-                                  <span className="text-[#8b8fa6] w-12 shrink-0"></span>
-                                  <span className="text-[10px] text-[#f5c87a] bg-[#f5c87a]/10 px-1.5 py-0.5 rounded border border-[#f5c87a]/20">⚠ Rate Limit Approaching</span>
+
+                              <div ref={addLogEntry} style={{ ...s.logRow, marginTop: 4 }}>
+                                  <span style={{ ...s.logTime, width: 48 }} />
+                                  <span style={s.warnBadge}>⚠ Rate Limit Approaching</span>
                               </div>
                           </div>
                       </div>
                   </div>
               </div>
 
-              {/* 3. AI Agent Fleet (Right) */}
-              <div className="w-[280px] flex flex-col justify-center gap-6">
-                  
-                  <div ref={rightAgents} className="space-y-4">
-                      <div className="text-[10px] text-[#8b8fa6] tracking-widest uppercase mb-2 pl-2 border-l-2 border-[#1e2130]">AI Agent Fleet</div>
-                      
+              {/* Right: Agent Fleet */}
+              <div style={{ width: 280, display: "flex", flexDirection: "column", justifyContent: "center", gap: 24 }}>
+                  <div ref={rightAgents} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                      <div style={s.agentLabel}>AI Agent Fleet</div>
+
                       {/* Agent 1 */}
-                      <div className="bg-[#13151c] border border-[#1e2130] rounded-xl p-4 shadow-xl relative overflow-hidden">
-                          <div className="absolute top-0 left-0 w-1 h-full bg-[#7af5ca]/50"></div>
-                          <div className="flex justify-between items-center mb-2">
-                              <span className="text-[13px] font-bold text-[#e4e5eb]">CodeBot Agent</span>
-                              <span className="text-[10px] bg-[#08090c] px-1.5 py-0.5 rounded border border-[#1e2130] text-[#8b8fa6]">v2.4</span>
+                      <div style={s.agentCard}>
+                          <div style={{ ...s.agentStripe, background: "rgba(122,245,202,0.5)" }} />
+                          <div style={s.agentHeader}>
+                              <span style={{ fontSize: 13, fontWeight: 700, color: "#e4e5eb" }}>CodeBot Agent</span>
+                              <span style={s.agentVersion}>v2.4</span>
                           </div>
-                          <div className="text-[12px] text-[#8b8fa6] space-y-1">
-                              <div>Using: <span className="text-[#7af5ca]">git-mcp</span></div>
-                              <div>Status: <span className="text-[#e4e5eb]">Processing task...</span></div>
+                          <div style={s.agentBody}>
+                              <div>Using: <span style={{ color: "#7af5ca" }}>git-mcp</span></div>
+                              <div>Status: <span style={{ color: "#e4e5eb" }}>Processing task...</span></div>
                           </div>
                       </div>
 
                       {/* Agent 2 */}
-                      <div className="bg-[#13151c] border border-[#1e2130] rounded-xl p-4 shadow-xl relative overflow-hidden">
-                          <div className="absolute top-0 left-0 w-1 h-full bg-[#f5c87a]/50"></div>
-                          <div className="flex justify-between items-center mb-2">
-                              <span className="text-[13px] font-bold text-[#e4e5eb]">SalesBot Agent</span>
-                              <span className="text-[10px] bg-[#08090c] px-1.5 py-0.5 rounded border border-[#1e2130] text-[#8b8fa6]">v1.1</span>
+                      <div style={s.agentCard}>
+                          <div style={{ ...s.agentStripe, background: "rgba(245,200,122,0.5)" }} />
+                          <div style={s.agentHeader}>
+                              <span style={{ fontSize: 13, fontWeight: 700, color: "#e4e5eb" }}>SalesBot Agent</span>
+                              <span style={s.agentVersion}>v1.1</span>
                           </div>
-                          <div className="text-[12px] text-[#8b8fa6] space-y-1">
-                              <div>Using: <span className="text-[#f5c87a]">stripe-mcp</span></div>
-                              <div>Status: <span className="text-[#f5c87a]">Waiting on rate limit</span></div>
+                          <div style={s.agentBody}>
+                              <div>Using: <span style={{ color: "#f5c87a" }}>stripe-mcp</span></div>
+                              <div>Status: <span style={{ color: "#f5c87a" }}>Waiting on rate limit</span></div>
                           </div>
                       </div>
                   </div>
-
               </div>
 
           </div>
       </div>
   );
 }
+
+/* ─── All styles as inline CSSProperties ─── */
+const s: Record<string, CSSProperties> = {
+  container: {
+    position: "relative",
+    width: "100%",
+    maxWidth: 1152,
+    margin: "0 auto",
+    height: 650,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontFamily: "'JetBrains Mono', 'Fira Code', monospace",
+    fontSize: 14,
+    overflow: "hidden",
+    userSelect: "none",
+    color: "#e4e5eb",
+  },
+  bgGrid: {
+    position: "absolute",
+    inset: 0,
+    pointerEvents: "none",
+    backgroundImage: "radial-gradient(circle at center, rgba(30,33,48,0.3) 1px, transparent 1px)",
+    backgroundSize: "24px 24px",
+    opacity: 0.4,
+  },
+  trackContainer: {
+    position: "absolute",
+    inset: 0,
+    zIndex: 0,
+    display: "flex",
+    alignItems: "center",
+    width: "100%",
+    pointerEvents: "none",
+    transform: "translateY(12px)",
+  },
+  trackBase: {
+    position: "absolute",
+    width: "24%",
+    height: 1,
+    background: "transparent",
+  },
+  trackLine: {
+    width: "100%",
+    height: "100%",
+  },
+  trafficDot: {
+    position: "absolute",
+    top: "50%",
+    transform: "translateY(-50%)",
+    width: 8,
+    height: 8,
+    borderRadius: "50%",
+    marginLeft: -4,
+  },
+  mainLayout: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "stretch",
+    width: "100%",
+    zIndex: 10,
+    padding: "0 32px",
+    gap: 16,
+    transform: "translateY(12px)",
+  },
+  centerColumn: {
+    width: 380,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    position: "relative",
+  },
+  terminalWrap: {
+    position: "absolute",
+    bottom: "calc(100% + 32px)",
+    left: "50%",
+    transform: "translateX(-50%)",
+    width: 280,
+  },
+  terminal: {
+    background: "#13151c",
+    border: "1px solid #1e2130",
+    borderRadius: 12,
+    padding: 20,
+    boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
+    position: "relative",
+  },
+  termLabel: {
+    fontSize: 10,
+    color: "#8b8fa6",
+    marginBottom: 16,
+    letterSpacing: "0.1em",
+    textTransform: "uppercase",
+    borderBottom: "1px solid rgba(30,33,48,0.5)",
+    paddingBottom: 8,
+  },
+  termDot: {
+    width: 10,
+    height: 10,
+    borderRadius: "50%",
+    background: "#1e2130",
+  },
+  termBody: {
+    color: "#e4e5eb",
+    height: 40,
+    display: "flex",
+    flexDirection: "column",
+    fontSize: 12,
+    lineHeight: 1.6,
+  },
+  connectorWrap: {
+    position: "absolute",
+    bottom: "100%",
+    left: "50%",
+    transform: "translateX(-50%)",
+    width: 1,
+    height: 32,
+    background: "transparent",
+  },
+  connectorLine: {
+    width: "100%",
+    height: "100%",
+    background: "rgba(228,229,235,0.6)",
+    boxShadow: "0 0 10px rgba(228,229,235,0.3)",
+  },
+  connectorDot: {
+    position: "absolute",
+    left: "50%",
+    transform: "translateX(-50%)",
+    width: 8,
+    height: 8,
+    borderRadius: "50%",
+    background: "#e4e5eb",
+    boxShadow: "0 0 10px #e4e5eb",
+    marginTop: -4,
+  },
+  hub: {
+    background: "#0b0c10",
+    border: "1px solid #1e2130",
+    borderRadius: 12,
+    boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
+    overflow: "hidden",
+    display: "flex",
+    flexDirection: "column",
+    height: 320,
+  },
+  hubHeader: {
+    background: "#13151c",
+    padding: 16,
+    borderBottom: "1px solid #1e2130",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    position: "relative",
+    zIndex: 20,
+  },
+  hubIcon: {
+    width: 32,
+    height: 32,
+    borderRadius: 8,
+    background: "#08090c",
+    border: "1px solid #1e2130",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#7af5ca",
+    boxShadow: "0 0 10px rgba(122,245,202,0.1)",
+  },
+  mcpList: {
+    padding: "12px 16px",
+    borderBottom: "1px solid rgba(30,33,48,0.5)",
+    display: "flex",
+    gap: 8,
+    overflow: "hidden",
+  },
+  mcpChip: {
+    fontSize: 10,
+    background: "#08090c",
+    border: "1px solid #1e2130",
+    color: "#8b8fa6",
+    padding: "4px 8px",
+    borderRadius: 4,
+  },
+  mcpChipNew: {
+    fontSize: 10,
+    background: "rgba(122,245,202,0.1)",
+    border: "1px solid rgba(122,245,202,0.5)",
+    color: "#7af5ca",
+    padding: "4px 8px",
+    borderRadius: 4,
+    fontWeight: 700,
+  },
+  telemetry: {
+    padding: 16,
+    flex: 1,
+    background: "#0b0c10",
+    display: "flex",
+    flexDirection: "column",
+    position: "relative",
+  },
+  telemetryHeader: {
+    fontSize: 10,
+    color: "#8b8fa6",
+    marginBottom: 12,
+    display: "flex",
+    justifyContent: "space-between",
+    letterSpacing: "0.1em",
+    textTransform: "uppercase",
+  },
+  logArea: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 10,
+    fontSize: 11,
+    overflow: "hidden",
+    flex: 1,
+    position: "relative",
+  },
+  logTimeline: {
+    position: "absolute",
+    top: 0,
+    left: 12,
+    bottom: 0,
+    width: 1,
+    background: "rgba(30,33,48,0.5)",
+  },
+  logRow: {
+    display: "flex",
+    gap: 12,
+    position: "relative",
+    paddingLeft: 24,
+  },
+  logDot: {
+    position: "absolute",
+    left: -2,
+    top: 6,
+    width: 6,
+    height: 6,
+    borderRadius: "50%",
+    border: "1px solid #0b0c10",
+  },
+  logTime: {
+    color: "#8b8fa6",
+    width: 48,
+    flexShrink: 0,
+  },
+  warnBadge: {
+    fontSize: 10,
+    color: "#f5c87a",
+    background: "rgba(245,200,122,0.1)",
+    padding: "2px 6px",
+    borderRadius: 4,
+    border: "1px solid rgba(245,200,122,0.2)",
+  },
+  agentLabel: {
+    fontSize: 10,
+    color: "#8b8fa6",
+    letterSpacing: "0.1em",
+    textTransform: "uppercase",
+    marginBottom: 8,
+    paddingLeft: 8,
+    borderLeft: "2px solid #1e2130",
+  },
+  agentCard: {
+    background: "#13151c",
+    border: "1px solid #1e2130",
+    borderRadius: 12,
+    padding: 16,
+    boxShadow: "0 20px 25px -5px rgba(0,0,0,0.1)",
+    position: "relative",
+    overflow: "hidden",
+  },
+  agentStripe: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: 4,
+    height: "100%",
+  },
+  agentHeader: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 8,
+  },
+  agentVersion: {
+    fontSize: 10,
+    background: "#08090c",
+    padding: "2px 6px",
+    borderRadius: 4,
+    border: "1px solid #1e2130",
+    color: "#8b8fa6",
+  },
+  agentBody: {
+    fontSize: 12,
+    color: "#8b8fa6",
+    display: "flex",
+    flexDirection: "column",
+    gap: 4,
+  },
+};
