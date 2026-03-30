@@ -32,7 +32,7 @@ export default function Hero() {
         <Orb top="30%" left="60%" size={400} color="rgba(122,200,245,0.12)" />
 
         {/* LEFT COLUMN: Text Content */}
-        <div style={{ flex: "1 1 500px", maxWidth: "55%", zIndex: 10 }}>
+        <div style={{ flex: "1 1 480px", maxWidth: "50%", zIndex: 10 }}>
           <Reveal delay={0.08}>
             <h1 style={S.heroH1}>
               Stop AI failures before they reach{" "}
@@ -60,12 +60,12 @@ export default function Hero() {
 
         {/* RIGHT COLUMN: The GSAP Animation */}
         <div style={{
-          flex: "1 1 400px",
-          maxWidth: "45%",
+          flex: "1 1 480px",
+          maxWidth: "50%",
           display: "flex",
-          justifyContent: "flex-end",
+          justifyContent: "center",
+          alignItems: "center",
           zIndex: 10,
-          overflow: "hidden",
         }}>
           <Reveal delay={0.4}>
              <HeroAnimation />
