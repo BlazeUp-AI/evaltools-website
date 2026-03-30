@@ -9,6 +9,7 @@ import Footer from "../components/layout/Footer";
 // Section Components
 import Hero from "../components/sections/Hero";
 import Pillars from "../components/sections/Pillars";
+import Scoring from "../components/sections/Scoring";
 import Proof from "../components/sections/Proof";
 import Integration from "../components/sections/Integration";
 import Privacy from "../components/sections/Privacy";
@@ -26,6 +27,9 @@ export default function LandingPage() {
       <div style={S.section}><div style={S.divider} /></div>
 
       <Pillars />
+      <div style={S.section}><div style={S.divider} /></div>
+
+      <Scoring />
       <div style={S.section}><div style={S.divider} /></div>
 
       <Proof />
