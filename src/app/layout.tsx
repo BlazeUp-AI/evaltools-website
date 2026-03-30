@@ -24,7 +24,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>{children}</body>
+      <body>
+        <script src="https://cdn.tailwindcss.com"></script>
+        {children}
+      </body>
     </html>
   );
 }
