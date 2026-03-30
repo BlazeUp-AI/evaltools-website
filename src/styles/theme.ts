@@ -15,23 +15,51 @@ export interface Palette {
   accent: string;
   accentDim: string;
   accentGlow: string;
+  accent03: string;
+  accent06: string;
+  accent08: string;
+  accent12: string;
+  accent15: string;
+  accent18: string;
+  accent20: string;
   warn: string;
   red: string;
 }
 
+/* All theme-dependent colors are now CSS variables.
+   Dark / light values are set via .section-dark / .section-light classes in globals.css.
+   The accent family is animated by GSAP on scroll. */
 export const palette: Palette = {
-  bg: "#08090c",
-  bgAlt: "#0e1016",
-  surface: "#13151c",
-  border: "#1e2130",
-  borderHi: "#2c3050",
-  text: "#e4e5eb",
-  textMuted: "#8b8fa6",
-  accent: "#7af5ca",
-  accentDim: "rgba(122,245,202,0.10)",
-  accentGlow: "rgba(122,245,202,0.25)",
+  bg: "var(--bg)",
+  bgAlt: "var(--bg-alt)",
+  surface: "var(--surface)",
+  border: "var(--border)",
+  borderHi: "var(--border-hi)",
+  text: "var(--text)",
+  textMuted: "var(--text-muted)",
+  accent: "var(--accent)",
+  accentDim: "var(--accent-dim)",
+  accentGlow: "var(--accent-glow)",
+  accent03: "var(--accent-03)",
+  accent06: "var(--accent-06)",
+  accent08: "var(--accent-08)",
+  accent12: "var(--accent-12)",
+  accent15: "var(--accent-15)",
+  accent18: "var(--accent-18)",
+  accent20: "var(--accent-20)",
   warn: "#f5c87a",
   red: "#f57a7a",
+};
+
+/* Raw hex values for edge cases that cannot use CSS variables
+   (e.g. JS color math, canvas rendering). */
+export const rawPalette = {
+  bg: "#08090c",
+  surface: "#13151c",
+  border: "#1e2130",
+  accent: "#7af5ca",
+  text: "#e4e5eb",
+  textMuted: "#8b8fa6",
 };
 
 export interface Styles {
@@ -85,13 +113,14 @@ export const S: Styles = {
     lineHeight: 1.65,
     WebkitFontSmoothing: "antialiased",
   } as CSSProperties,
+  /* Nav is always dark — hardcoded background */
   nav: {
     position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
     display: "flex", alignItems: "center", justifyContent: "space-between",
     padding: "16px 40px",
     background: "rgba(8,9,12,0.82)",
     backdropFilter: "blur(18px)",
-    borderBottom: `1px solid ${palette.border}`,
+    borderBottom: `1px solid transparent`,
   },
   logo: {
     fontFamily: FONT_DISPLAY, fontSize: "1.5rem", color: palette.accent,
@@ -101,14 +130,13 @@ export const S: Styles = {
     display: "flex", gap: 28, alignItems: "center",
   },
   navLink: {
-    color: palette.textMuted, fontSize: "0.82rem", textDecoration: "none",
+    color: "#8b8fa6", fontSize: "0.82rem", textDecoration: "none",
     letterSpacing: "0.06em", textTransform: "uppercase", fontWeight: 500,
-    transition: "color 0.2s",
     cursor: "pointer",
   },
   navCta: {
     padding: "9px 22px", borderRadius: 6,
-    background: palette.accent, color: palette.bg,
+    background: palette.accent, color: "#08090c",
     fontWeight: 700, fontSize: "0.82rem", border: "none", cursor: "pointer",
     letterSpacing: "0.04em", textTransform: "uppercase",
     transition: "transform 0.15s, box-shadow 0.2s",
@@ -146,7 +174,7 @@ export const S: Styles = {
   },
   btnPrimary: {
     padding: "16px 36px", borderRadius: 8,
-    background: palette.accent, color: palette.bg,
+    background: palette.accent, color: "#08090c",
     fontWeight: 700, fontSize: "0.92rem", border: "none", cursor: "pointer",
     letterSpacing: "0.03em",
     boxShadow: `0 0 40px ${palette.accentGlow}`,
@@ -200,13 +228,14 @@ export const S: Styles = {
     display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, marginTop: 48,
   },
   proofProblem: {
-    background: "rgba(245,122,122,0.04)",
-    border: `1px solid rgba(245,122,122,0.15)`,
+    background: "#ffffff",
+    border: "1px solid #e2e4ea",
     borderRadius: 16, padding: "40px 36px",
+    color: "#0d0f14",
   },
   proofSolution: {
     background: palette.accentDim,
-    border: `1px solid rgba(122,245,202,0.18)`,
+    border: `1px solid ${palette.accent18}`,
     borderRadius: 16, padding: "40px 36px",
   },
   proofTag: {
@@ -221,19 +250,19 @@ export const S: Styles = {
   // ─ Code ─
   codeWrap: {
     background: "#0c0d12", borderRadius: 16,
-    border: `1px solid ${palette.border}`, overflow: "hidden",
+    border: `1px solid #1e2130`, overflow: "hidden",
     marginTop: 48, maxWidth: 760, marginLeft: "auto", marginRight: "auto",
   },
   codeBar: {
     display: "flex", alignItems: "center", gap: 8, padding: "14px 20px",
-    background: "#101218", borderBottom: `1px solid ${palette.border}`,
+    background: "#101218", borderBottom: `1px solid #1e2130`,
   },
   codeDot: (c: string): CSSProperties => ({
     width: 11, height: 11, borderRadius: "50%", background: c,
   }),
   codeBody: {
     padding: "28px 28px", fontFamily: FONT_MONO, fontSize: "0.88rem",
-    lineHeight: 1.9, overflowX: "auto", color: palette.textMuted,
+    lineHeight: 1.9, overflowX: "auto", color: "#8b8fa6",
   },
 
   // ─ Privacy ─

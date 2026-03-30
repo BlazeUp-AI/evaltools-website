@@ -13,11 +13,11 @@ export default function Code() {
   const vr: CSSProperties = { color: palette.text };
   const pr: CSSProperties = { color: palette.accent };
   return (
-    <div style={S.codeWrap}>
+    <div style={S.codeWrap} className="section-dark">
       <div style={S.codeBar}>
         <div style={S.codeDot("#f57a7a")} />
         <div style={S.codeDot("#f5c87a")} />
-        <div style={S.codeDot("#7af5ca")} />
+        <div style={S.codeDot(palette.accent)} />
         <span style={{ marginLeft: 12, fontSize: "0.75rem", color: palette.textMuted, fontFamily: FONT_MONO }}>evaluate.py</span>
       </div>
       <pre style={S.codeBody}>

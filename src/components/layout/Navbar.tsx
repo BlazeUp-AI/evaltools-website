@@ -19,7 +19,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav style={{ ...S.nav, borderColor: scrolled ? palette.border : "transparent" }}>
+    <nav style={{ ...S.nav, borderColor: scrolled ? "#1e2130" : "transparent" }}>
       <div style={S.logo}>
         <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
           <circle cx="13" cy="13" r="5" fill={palette.accent} opacity="0.9" />

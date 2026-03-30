@@ -122,7 +122,7 @@ function EggAnimation() {
               className="egg-commit"
               style={{
                 ...styles.commitChip,
-                borderColor: c.color === palette.accent ? "rgba(122,245,202,0.25)" : "rgba(245,122,122,0.25)",
+                borderColor: c.color === palette.accent ? "var(--accent-20)" : "rgba(245,122,122,0.25)",
               }}
             >
               <span style={{ color: c.color, fontSize: "0.65rem" }}>{c.status === "merged" ? "✓" : "✗"}</span>
@@ -178,7 +178,7 @@ function EggAnimation() {
         <div style={{ width: "100%", height: 3, background: palette.border, borderRadius: 2, overflow: "hidden" }}>
           <div className="egg-score-fill" style={{ width: "94%", height: "100%", background: `linear-gradient(to right, ${palette.accent}, ${palette.warn})`, borderRadius: 2 }} />
         </div>
-        <div className="egg-verdict" style={{ fontSize: "0.58rem", color: palette.accent, fontFamily: "'JetBrains Mono', monospace", letterSpacing: "0.08em", background: palette.accentDim, padding: "2px 8px", borderRadius: 4, border: `1px solid rgba(122,245,202,0.2)` }}>
+        <div className="egg-verdict" style={{ fontSize: "0.58rem", color: palette.accent, fontFamily: "'JetBrains Mono', monospace", letterSpacing: "0.08em", background: palette.accentDim, padding: "2px 8px", borderRadius: 4, border: `1px solid var(--accent-20)` }}>
           MATCHES TEAM STYLE
         </div>
       </div>
@@ -345,7 +345,7 @@ function IodAnimation() {
             { text: "+ onClick: checkout()", color: palette.red },
             { text: "+ import stripe", color: palette.red },
           ].map((line, i) => (
-            <div key={i} className="iod-did-line" style={{ ...styles.codeLine, borderColor: i > 0 ? "rgba(245,122,122,0.2)" : "rgba(122,245,202,0.15)" }}>
+            <div key={i} className="iod-did-line" style={{ ...styles.codeLine, borderColor: i > 0 ? "rgba(245,122,122,0.2)" : "var(--accent-15)" }}>
               <span style={{ color: line.color, fontSize: "0.66rem", fontFamily: "'JetBrains Mono', monospace" }}>{line.text}</span>
             </div>
           ))}
@@ -356,16 +356,18 @@ function IodAnimation() {
       <div
         className="iod-score-badge"
         style={{
-          position: "absolute",
-          bottom: 8,
-          right: 12,
+          marginTop: 12,
           background: "rgba(245,122,122,0.08)",
           border: "1px solid rgba(245,122,122,0.25)",
           borderRadius: 6,
           padding: "3px 10px",
           display: "flex",
           alignItems: "center",
+          justifyContent: "center",
           gap: 6,
+          width: "fit-content",
+          marginLeft: "auto",
+          marginRight: "auto",
         }}
       >
         <span style={{ fontSize: "0.58rem", color: palette.red, fontFamily: "'JetBrains Mono', monospace", letterSpacing: "0.06em" }}>
@@ -568,7 +570,7 @@ const styles: Record<string, CSSProperties> = {
     height: 36,
     borderRadius: 10,
     background: palette.accentDim,
-    border: `1px solid rgba(122,245,202,0.2)`,
+    border: `1px solid var(--accent-20)`,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -591,7 +593,7 @@ const styles: Record<string, CSSProperties> = {
     background: palette.accentDim,
     padding: "2px 8px",
     borderRadius: 4,
-    border: `1px solid rgba(122,245,202,0.18)`,
+    border: `1px solid var(--accent-18)`,
   } as CSSProperties,
 
   cardDesc: {
@@ -636,7 +638,7 @@ const styles: Record<string, CSSProperties> = {
 
   patternBox: {
     background: "rgba(122,245,202,0.03)",
-    border: `1px solid rgba(122,245,202,0.12)`,
+    border: `1px solid var(--accent-12)`,
     borderRadius: 8,
     padding: "12px 14px",
     flex: 1,
@@ -646,7 +648,7 @@ const styles: Record<string, CSSProperties> = {
     padding: "3px 8px",
     borderRadius: 4,
     background: "rgba(255,255,255,0.015)",
-    border: `1px solid rgba(122,245,202,0.08)`,
+    border: `1px solid var(--accent-08)`,
   } as CSSProperties,
 
   cardFooter: {
