@@ -453,7 +453,7 @@ export default function Scoring() {
           lineHeight: 1.7,
           fontFamily: FONT_BODY,
         }}>
-          Pattern-match against your team's actual review history. Then verify the AI did what it claimed.
+          Pattern-match against your team&apos;s actual review history. Then verify if the AI did what it claimed.
         </p>
       </div>
 
