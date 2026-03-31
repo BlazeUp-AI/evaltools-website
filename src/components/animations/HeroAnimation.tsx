@@ -83,12 +83,12 @@ export default function HeroAnimation() {
           {/* Connection Tracks (Hub → Agents) */}
           <div style={s.trackContainer}>
               {/* Top track */}
-              <div style={{ ...s.trackBase, right: 0, top: "calc(50% - 40px)", width: "42%", left: "auto" }}>
+              <div style={{ ...s.trackBase, left: 280, right: 220, width: "auto", top: "calc(50% - 40px)" }}>
                   <div ref={addAgentLine} style={{ ...s.trackLine, background: "rgba(122,245,202,0.6)", boxShadow: "0 0 10px rgba(122,245,202,0.3)" }} />
                   <div ref={addTrafficDot} style={{ ...s.trafficDot, background: "#7af5ca", boxShadow: "0 0 10px #7af5ca" }} />
               </div>
               {/* Bottom track */}
-              <div style={{ ...s.trackBase, right: 0, top: "calc(50% + 40px)", width: "42%", left: "auto" }}>
+              <div style={{ ...s.trackBase, left: 280, right: 220, width: "auto", top: "calc(50% + 40px)" }}>
                   <div ref={addAgentLine} style={{ ...s.trackLine, background: "rgba(245,200,122,0.6)", boxShadow: "0 0 10px rgba(245,200,122,0.3)" }} />
                   <div ref={addTrafficDot} style={{ ...s.trafficDot, background: "#f5c87a", boxShadow: "0 0 10px #f5c87a" }} />
               </div>
@@ -234,7 +234,7 @@ const s: Record<string, CSSProperties> = {
   container: {
     position: "relative",
     width: "100%",
-    maxWidth: 560,
+    maxWidth: 750,
     height: 580,
     display: "flex",
     alignItems: "center",
