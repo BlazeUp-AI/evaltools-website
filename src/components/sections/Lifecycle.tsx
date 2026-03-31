@@ -498,7 +498,7 @@ const s: Record<string, CSSProperties> = {
   /* Bottom cards */
   bottomGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fit, minmax(min(300px, 100%), 1fr))",
     gap: 20,
     marginTop: 32,
   },

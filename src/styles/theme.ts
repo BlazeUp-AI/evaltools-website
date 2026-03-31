@@ -142,13 +142,13 @@ export const S: Styles = {
     transition: "transform 0.15s, box-shadow 0.2s",
   },
   section: {
-    maxWidth: 1440, margin: "0 auto", padding: "0 32px",
+    maxWidth: 1440, margin: "0 auto", padding: "0 clamp(16px, 4vw, 32px)",
   },
 
   // ─ Hero ─
   hero: {
     minHeight: "100vh", display: "flex", flexDirection: "column",
-    justifyContent: "center", position: "relative", paddingTop: 100,
+    justifyContent: "center", position: "relative", paddingTop: 80,
   },
   heroLabel: {
     display: "inline-flex", alignItems: "center", gap: 8,
@@ -173,7 +173,7 @@ export const S: Styles = {
     display: "flex", gap: 16, flexWrap: "wrap", alignItems: "center",
   },
   btnPrimary: {
-    padding: "16px 36px", borderRadius: 8,
+    padding: "14px clamp(20px, 4vw, 36px)", borderRadius: 8,
     background: palette.accent, color: "#08090c",
     fontWeight: 700, fontSize: "0.92rem", border: "none", cursor: "pointer",
     letterSpacing: "0.03em",
@@ -181,7 +181,7 @@ export const S: Styles = {
     transition: "transform 0.15s",
   },
   btnGhost: {
-    padding: "16px 36px", borderRadius: 8,
+    padding: "14px clamp(20px, 4vw, 36px)", borderRadius: 8,
     background: "transparent", color: palette.text,
     fontWeight: 600, fontSize: "0.92rem",
     border: `1px solid ${palette.borderHi}`, cursor: "pointer",
@@ -201,7 +201,7 @@ export const S: Styles = {
 
   // ─ Pillars ─
   pillarsGrid: {
-    display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+    display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(300px, 100%), 1fr))",
     gap: 24, marginTop: 48,
   },
   pillarCard: {
@@ -225,18 +225,18 @@ export const S: Styles = {
 
   // ─ Proof ─
   proofGrid: {
-    display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, marginTop: 48,
+    display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(320px, 100%), 1fr))", gap: "clamp(20px, 4vw, 40px)", marginTop: 48,
   },
   proofProblem: {
     background: "#ffffff",
     border: "1px solid #e2e4ea",
-    borderRadius: 16, padding: "40px 36px",
+    borderRadius: 16, padding: "clamp(24px, 4vw, 40px) clamp(20px, 3vw, 36px)",
     color: "#0d0f14",
   },
   proofSolution: {
     background: palette.accentDim,
     border: `1px solid ${palette.accent18}`,
-    borderRadius: 16, padding: "40px 36px",
+    borderRadius: 16, padding: "clamp(24px, 4vw, 40px) clamp(20px, 3vw, 36px)",
   },
   proofTag: {
     fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.1em",
@@ -267,7 +267,7 @@ export const S: Styles = {
 
   // ─ Privacy ─
   privacyGrid: {
-    display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+    display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(260px, 100%), 1fr))",
     gap: 20, marginTop: 48,
   },
   privacyCard: {
@@ -277,7 +277,7 @@ export const S: Styles = {
 
   // ─ CTA ─
   ctaBox: {
-    textAlign: "center", padding: "80px 32px",
+    textAlign: "center", padding: "clamp(40px, 8vw, 80px) clamp(16px, 4vw, 32px)",
     background: `radial-gradient(ellipse at 50% 0%, ${palette.accentDim} 0%, transparent 70%)`,
     borderRadius: 24, border: `1px solid ${palette.border}`,
     marginTop: 48,

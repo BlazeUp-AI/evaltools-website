@@ -24,7 +24,7 @@ export default function Hero() {
             justifyContent: "space-between",
             alignItems: "center",
             flexWrap: "wrap",
-            gap: "40px"
+            gap: "clamp(20px, 4vw, 40px)"
           }}
           id="hero"
         >
@@ -32,7 +32,7 @@ export default function Hero() {
         <Orb top="30%" left="60%" size={400} color="rgba(122,200,245,0.12)" />
 
         {/* LEFT COLUMN: Text Content */}
-        <div style={{ flex: "1 1 480px", maxWidth: "50%", zIndex: 10 }}>
+        <div style={{ flex: "1 1 300px", zIndex: 10 }}>
           <Reveal delay={0.08}>
             <h1 style={S.heroH1}>
               Stop AI failures before they reach{" "}
@@ -58,10 +58,9 @@ export default function Hero() {
           </Reveal>
         </div>
 
-        {/* RIGHT COLUMN: The GSAP Animation */}
+        {/* RIGHT COLUMN: The GSAP Animation — hidden on small screens */}
         <div style={{
-          flex: "1 1 480px",
-          maxWidth: "50%",
+          flex: "1 1 400px",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",

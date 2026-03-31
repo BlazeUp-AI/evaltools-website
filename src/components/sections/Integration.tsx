@@ -26,7 +26,7 @@ export default function Integration() {
                   <Code />
                 </Reveal>
                 <Reveal delay={0.2}>
-                  <div style={{ display: "flex", justifyContent: "center", gap: 32, marginTop: 36, flexWrap: "wrap" }}>
+                  <div style={{ display: "flex", justifyContent: "center", gap: "clamp(10px, 3vw, 32px)", marginTop: 36, flexWrap: "wrap" }}>
                     {sdkLanguages.map((lang: string) => (
                       <span key={lang} style={{
                         padding: "8px 20px", borderRadius: 8,

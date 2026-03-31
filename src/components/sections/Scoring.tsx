@@ -525,7 +525,7 @@ const footerDot = (color: string): CSSProperties => ({
 const styles: Record<string, CSSProperties> = {
   grid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(420px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fit, minmax(min(420px, 100%), 1fr))",
     gap: 24,
     marginTop: 48,
   } as CSSProperties,
