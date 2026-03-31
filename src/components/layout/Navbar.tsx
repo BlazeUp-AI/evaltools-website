@@ -31,18 +31,7 @@ export default function Navbar() {
   return (
     <nav style={{ ...S.nav, borderColor: scrolled ? "#1e2130" : "transparent" }}>
       <a href="#hero" onClick={smoothScroll} style={{ ...S.logo, textDecoration: "none", cursor: "pointer" }}>
-        <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-          <circle cx="13" cy="13" r="5" fill={palette.accent} opacity="0.9" />
-          <circle cx="5" cy="8" r="2.5" fill={palette.accent} opacity="0.45" />
-          <circle cx="21" cy="8" r="2.5" fill={palette.accent} opacity="0.45" />
-          <circle cx="5" cy="18" r="2.5" fill={palette.accent} opacity="0.45" />
-          <circle cx="21" cy="18" r="2.5" fill={palette.accent} opacity="0.45" />
-          <line x1="8" y1="10" x2="11" y2="12" stroke={palette.accent} strokeWidth="0.8" opacity="0.3" />
-          <line x1="18" y1="10" x2="15" y2="12" stroke={palette.accent} strokeWidth="0.8" opacity="0.3" />
-          <line x1="8" y1="16" x2="11" y2="14" stroke={palette.accent} strokeWidth="0.8" opacity="0.3" />
-          <line x1="18" y1="16" x2="15" y2="14" stroke={palette.accent} strokeWidth="0.8" opacity="0.3" />
-        </svg>
-        <span style={{ fontWeight: 600, letterSpacing: "0.10em" }}>Observal</span>
+        <span style={{ fontWeight: 600, letterSpacing: "0.10em", fontSize : 50 }}>Observal</span>
       </a>
       <div style={S.navLinks}>
         <a style={S.navLink} href="#pillars" onClick={smoothScroll}>Platform</a>
