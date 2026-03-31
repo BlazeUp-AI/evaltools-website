@@ -108,9 +108,9 @@ function EggAnimation() {
   }, []);
 
   return (
-    <div ref={container} style={styles.animBox}>
+    <div ref={container} className="egg-anim-box" style={styles.animBox}>
       {/* Commits Column */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 6, minWidth: 120 }}>
+      <div className="egg-commits-col" style={{ display: "flex", flexDirection: "column", gap: 6, minWidth: 120 }}>
         <div style={styles.miniLabel}>Git History</div>
         {[
           { hash: "a3f2c1d", status: "merged", color: palette.accent },
@@ -167,7 +167,7 @@ function EggAnimation() {
       </div>
 
       {/* Score Output */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 6, minWidth: 90, alignItems: "flex-end" }}>
+      <div className="egg-score-col" style={{ display: "flex", flexDirection: "column", gap: 6, minWidth: 90, alignItems: "flex-end" }}>
         <div style={styles.miniLabel}>EGG Score</div>
         <div style={{ display: "flex", alignItems: "baseline", gap: 3 }}>
           <span className="egg-score-num" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "1.6rem", fontWeight: 700, color: palette.accent, lineHeight: 1 }}>
@@ -277,7 +277,7 @@ function IodAnimation() {
   }, []);
 
   return (
-    <div ref={container} style={styles.animBox}>
+    <div ref={container} className="iod-anim-box" style={styles.animBox}>
       {/* "Said" Column */}
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ ...styles.miniLabel, color: palette.accent }}>AI Reasoning</div>
@@ -310,7 +310,7 @@ function IodAnimation() {
       </div>
 
       {/* Connector */}
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: 32, gap: 4, position: "relative" as const }}>
+      <div className="iod-connector-col" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: 32, gap: 4, position: "relative" as const }}>
         <div
           className="iod-connector"
           style={{
@@ -593,6 +593,7 @@ const styles: Record<string, CSSProperties> = {
     padding: "20px 16px",
     display: "flex",
     alignItems: "flex-start",
+    flexWrap: "wrap",
     gap: 16,
     position: "relative",
     overflow: "hidden",

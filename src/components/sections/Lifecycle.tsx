@@ -41,14 +41,29 @@ const loopLabels: LoopLabel[] = [
   { x: 890, y: 58, text: "Iterate", side: "right", anchor: "middle" },
 ];
 
-/* ─── Flowing dot component for the path ─── */
-function createDotId(i: number) {
-  return `flow-dot-${i}`;
-}
+
+/* ─── Vertical infinity path for mobile ─── */
+// Viewbox: 0 0 520 1200 (swapped dimensions)
+const VERTICAL_INFINITY_PATH =
+  "M 260 600 C 80 600, 80 200, 260 200 C 440 200, 440 600, 260 600 C 80 600, 80 1000, 260 1000 C 440 1000, 440 600, 260 600";
+
+const verticalLabels: { x: number; y: number; text: string; side: "top" | "bottom" }[] = [
+  // Top loop (MCP Registry)
+  { x: 260, y: 80, text: "Submit", side: "top" },
+  { x: 50, y: 340, text: "Evaluate", side: "top" },
+  { x: 260, y: 500, text: "Install", side: "top" },
+  { x: 470, y: 340, text: "Publish", side: "top" },
+  // Bottom loop (Agent Registry)
+  { x: 260, y: 700, text: "Deploy", side: "bottom" },
+  { x: 50, y: 860, text: "Score", side: "bottom" },
+  { x: 260, y: 1120, text: "Iterate", side: "bottom" },
+  { x: 470, y: 860, text: "Monitor", side: "bottom" },
+];
 
 export default function Lifecycle() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
+  const svgVertRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -156,6 +171,68 @@ export default function Lifecycle() {
         ease: "power2.out",
         scrollTrigger: { trigger: bottomCards[0], start: "top 85%" },
       });
+
+      /* ─── Vertical SVG animations (mobile) ─── */
+      const vSvg = svgVertRef.current;
+      if (vSvg) {
+        const vPath = vSvg.querySelector<SVGPathElement>("#v-infinity-stroke");
+        if (vPath) {
+          const len = vPath.getTotalLength();
+          gsap.set(vPath, { strokeDasharray: len, strokeDashoffset: len });
+          gsap.to(vPath, {
+            strokeDashoffset: 0,
+            duration: 2.5,
+            ease: "power2.inOut",
+            scrollTrigger: { trigger: vSvg, start: "top 78%" },
+          });
+        }
+
+        const vLabels = vSvg.querySelectorAll<SVGGElement>(".loop-label-v");
+        gsap.set(vLabels, { opacity: 0 });
+        gsap.to(vLabels, {
+          opacity: 1,
+          duration: 0.45,
+          stagger: 0.18,
+          ease: "power2.out",
+          scrollTrigger: { trigger: vSvg, start: "top 72%" },
+        });
+
+        const vBadges = vSvg.querySelectorAll<SVGGElement>(".center-badge-v");
+        gsap.set(vBadges, { opacity: 0, scale: 0.85 });
+        gsap.to(vBadges, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.5,
+          stagger: 0.2,
+          ease: "back.out(1.4)",
+          delay: 1.2,
+          scrollTrigger: { trigger: vSvg, start: "top 72%" },
+        });
+
+        const vDots = vSvg.querySelectorAll<SVGCircleElement>(".flow-dot-v");
+        vDots.forEach((dot, i) => {
+          gsap.to(dot, {
+            motionPath: {
+              path: "#v-infinity-motion",
+              align: "#v-infinity-motion",
+              alignOrigin: [0.5, 0.5],
+            },
+            duration: 8,
+            repeat: -1,
+            ease: "none",
+            delay: i * 2,
+          });
+          gsap.to(dot, {
+            attr: { r: 5 },
+            opacity: 0.4,
+            duration: 1,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            delay: i * 0.7,
+          });
+        });
+      }
     }, section);
 
     return () => ctx.revert();
@@ -190,9 +267,11 @@ export default function Lifecycle() {
           }}
         />
 
+        {/* ─── Horizontal SVG (desktop) ─── */}
         <svg
           ref={svgRef}
           viewBox="0 0 1200 520"
+          className="lc-svg-desktop"
           style={{ width: "100%", height: "auto", position: "relative", zIndex: 1 }}
           fill="none"
         >
@@ -303,6 +382,131 @@ export default function Lifecycle() {
                   textAnchor="middle"
                   fill={color}
                   fontSize="18"
+                  fontFamily="'DM Sans', sans-serif"
+                  fontWeight="700"
+                  letterSpacing="0.06em"
+                >
+                  {l.text}
+                </text>
+              </g>
+            );
+          })}
+        </svg>
+
+        {/* ─── Vertical SVG (mobile) ─── */}
+        <svg
+          ref={svgVertRef}
+          viewBox="0 0 520 1200"
+          className="lc-svg-mobile"
+          style={{ width: "100%", height: "auto", position: "relative", zIndex: 1, display: "none" }}
+          fill="none"
+        >
+          <defs>
+            <filter id="glowV" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="6" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            <filter id="glowSoftV" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="12" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            <linearGradient id="pathGradV" x1="50%" y1="0%" x2="50%" y2="100%">
+              <stop offset="0%" stopColor={palette.accent} />
+              <stop offset="50%" stopColor={palette.textMuted} />
+              <stop offset="100%" stopColor={palette.warn} />
+            </linearGradient>
+          </defs>
+
+          {/* Background glows */}
+          <ellipse cx="260" cy="300" rx="180" ry="220" fill={palette.accent} opacity="0.02" filter="url(#glowSoftV)" />
+          <ellipse cx="260" cy="900" rx="180" ry="220" fill={palette.warn} opacity="0.02" filter="url(#glowSoftV)" />
+
+          {/* Hidden motion path */}
+          <path id="v-infinity-motion" d={VERTICAL_INFINITY_PATH} stroke="none" fill="none" />
+
+          {/* Visible path */}
+          <path
+            id="v-infinity-stroke"
+            d={VERTICAL_INFINITY_PATH}
+            stroke="url(#pathGradV)"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+            opacity="0.7"
+          />
+
+          {/* Ghost path */}
+          <path
+            d={VERTICAL_INFINITY_PATH}
+            stroke={palette.border}
+            strokeWidth="48"
+            fill="none"
+            strokeLinecap="round"
+            opacity="0.25"
+          />
+
+          {/* Flowing dots */}
+          {[0, 1, 2, 3].map((i) => (
+            <circle
+              key={i}
+              className="flow-dot-v"
+              r="3.5"
+              fill={i < 2 ? palette.accent : palette.warn}
+              opacity="0.8"
+              filter="url(#glowV)"
+            />
+          ))}
+
+          {/* MCP Registry badge (top loop center) */}
+          <g className="center-badge-v">
+            <rect x="160" y="276" width="200" height="48" rx="10" fill="#13151c" stroke={palette.accent} strokeWidth="1" opacity="0.95" />
+            <text x="260" y="296" textAnchor="middle" fill={palette.accent} fontSize="14" fontFamily="'DM Sans', sans-serif" fontWeight="700" letterSpacing="0.1em">
+              MCP REGISTRY
+            </text>
+            <text x="260" y="314" textAnchor="middle" fill="#8b8fa6" fontSize="11" fontFamily="'JetBrains Mono', monospace">
+              discover · install · monitor
+            </text>
+          </g>
+
+          {/* Agent Registry badge (bottom loop center) */}
+          <g className="center-badge-v">
+            <rect x="150" y="876" width="220" height="48" rx="10" fill="#13151c" stroke={palette.warn} strokeWidth="1" opacity="0.95" />
+            <text x="260" y="896" textAnchor="middle" fill={palette.warn} fontSize="14" fontFamily="'DM Sans', sans-serif" fontWeight="700" letterSpacing="0.1em">
+              AGENT REGISTRY
+            </text>
+            <text x="260" y="914" textAnchor="middle" fill="#8b8fa6" fontSize="11" fontFamily="'JetBrains Mono', monospace">
+              deploy · evaluate · score
+            </text>
+          </g>
+
+          {/* Crossover badge (center) */}
+          <g className="center-badge-v">
+            <rect x="195" y="576" width="130" height="48" rx="8" fill="#0e1016" stroke="#2c3050" strokeWidth="1" />
+            <text x="260" y="596" textAnchor="middle" fill="#e4e5eb" fontSize="12" fontFamily="'DM Sans', sans-serif" fontWeight="600" letterSpacing="0.04em">
+              OBSERVAL
+            </text>
+            <text x="260" y="612" textAnchor="middle" fill="#8b8fa6" fontSize="10" fontFamily="'JetBrains Mono', monospace">
+              orchestrator
+            </text>
+          </g>
+
+          {/* Loop labels */}
+          {verticalLabels.map((l, i) => {
+            const color = l.side === "top" ? palette.accent : palette.warn;
+            return (
+              <g key={i} className="loop-label-v">
+                <text
+                  x={l.x}
+                  y={l.y}
+                  textAnchor="middle"
+                  fill={color}
+                  fontSize="22"
                   fontFamily="'DM Sans', sans-serif"
                   fontWeight="700"
                   letterSpacing="0.06em"

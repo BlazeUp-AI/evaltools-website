@@ -103,6 +103,59 @@ a {
   #scoring > div:last-child {
     grid-template-columns: 1fr !important;
   }
+
+  /* Privacy vault: stack on mobile */
+  #privacy > div:last-child {
+    grid-template-columns: 1fr !important;
+  }
+  #privacy svg {
+    max-width: 280px !important;
+  }
+
+  /* Lifecycle: swap horizontal SVG for vertical on mobile */
+  #lifecycle .lc-svg-desktop {
+    display: none !important;
+  }
+  #lifecycle .lc-svg-mobile {
+    display: block !important;
+  }
+
+  /* Scoring animations: stack vertically on mobile */
+  #scoring .egg-anim-box,
+  #scoring .iod-anim-box {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 16px !important;
+    min-height: unset !important;
+  }
+
+  /* EGG: commits row becomes horizontal, pattern box full width, score centered */
+  #scoring .egg-commits-col {
+    flex-direction: row !important;
+    gap: 8px !important;
+    min-width: unset !important;
+    flex-wrap: wrap !important;
+  }
+  #scoring .egg-commits-col .egg-arrow {
+    display: none !important;
+  }
+  #scoring .egg-pattern-box {
+    width: 100% !important;
+  }
+  #scoring .egg-score-col {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 16px !important;
+    min-width: unset !important;
+  }
+
+  /* IOD: hide vertical connector, stack said/did as full-width blocks */
+  #scoring .iod-connector-col {
+    display: none !important;
+  }
+  #scoring .iod-anim-box > div {
+    min-width: unset !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -115,15 +168,30 @@ a {
   }
 }
 
-/* Hide hero animation on small screens */
+/* Hide hero animation on small screens & center content */
 @media (max-width: 900px) {
   #hero > div:last-of-type {
     display: none !important;
   }
   #hero {
     flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
   }
   #hero > div:first-of-type {
     max-width: 100% !important;
+    align-items: center !important;
+  }
+  #hero > div:first-of-type > * {
+    text-align: center !important;
+  }
+  /* Center the CTA buttons and stats */
+  #hero [style*="flex-wrap"] {
+    justify-content: center !important;
+  }
+  /* Center the hero label pill */
+  #hero > div:first-of-type > div:first-child > div:first-child {
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 }
