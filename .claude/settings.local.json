@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node ./node_modules/.bin/next build)",
+      "Bash(node node_modules/next/dist/bin/next build)",
+      "Bash(vercel --prod --yes)",
+      "Bash(vercel --prod --yes --prebuilt)",
+      "Bash(node node_modules/vercel/dist/index.js build)",
+      "Bash(node node_modules/vercel/dist/index.js --prod --yes --prebuilt)",
+      "Bash(vercel build:*)",
+      "Bash(vercel pull:*)",
+      "Bash(vercel deploy:*)"
+    ]
+  }
+}

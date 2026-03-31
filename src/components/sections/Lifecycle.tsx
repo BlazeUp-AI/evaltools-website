@@ -409,21 +409,21 @@ export default function Lifecycle() {
           <div style={s.bottomBody}>
             <div style={s.compositionRow}>
               <div style={s.compChip}>
-                <span style={{ color: palette.accent, fontSize: "0.68rem" }}>Prompt</span>
-                <span style={{ color: palette.textMuted, fontSize: "0.62rem" }}>system instructions</span>
+                <span style={{ color: palette.accent, fontSize: "0.9rem" }}>Prompt</span>
+                <span style={{ color: palette.textMuted, fontSize: "0.78rem" }}>system instructions</span>
               </div>
-              <span style={{ color: palette.border, fontSize: "1.2rem", lineHeight: 1 }}>+</span>
+              <span style={{ color: palette.border, fontSize: "1.4rem", lineHeight: 1 }}>+</span>
               <div style={s.compChip}>
-                <span style={{ color: palette.warn, fontSize: "0.68rem" }}>MCPs</span>
-                <span style={{ color: palette.textMuted, fontSize: "0.62rem" }}>tool servers</span>
+                <span style={{ color: palette.warn, fontSize: "0.9rem" }}>MCPs</span>
+                <span style={{ color: palette.textMuted, fontSize: "0.78rem" }}>tool servers</span>
               </div>
-              <span style={{ color: palette.border, fontSize: "1.2rem", lineHeight: 1 }}>+</span>
+              <span style={{ color: palette.border, fontSize: "1.4rem", lineHeight: 1 }}>+</span>
               <div style={s.compChip}>
-                <span style={{ color: "#82aaff", fontSize: "0.68rem" }}>Model</span>
-                <span style={{ color: palette.textMuted, fontSize: "0.62rem" }}>LLM config</span>
+                <span style={{ color: "#82aaff", fontSize: "0.9rem" }}>Model</span>
+                <span style={{ color: palette.textMuted, fontSize: "0.78rem" }}>LLM config</span>
               </div>
             </div>
-            <div style={{ fontSize: "0.78rem", color: palette.textMuted, lineHeight: 1.6, marginTop: 12 }}>
+            <div style={{ fontSize: "0.95rem", color: palette.textMuted, lineHeight: 1.6, marginTop: 12 }}>
               Every agent is a declarative composition. Submit the repo, Observal handles the rest — evaluation, documentation, and production monitoring via SLM-as-a-judge.
             </div>
           </div>
@@ -526,7 +526,7 @@ const s: Record<string, CSSProperties> = {
   },
   bottomTitle: {
     fontFamily: FONT_DISPLAY,
-    fontSize: "1.15rem",
+    fontSize: "1.5rem",
     color: palette.text,
     letterSpacing: "-0.01em",
   },
@@ -542,20 +542,20 @@ const s: Record<string, CSSProperties> = {
   },
   stepNum: {
     fontFamily: FONT_MONO,
-    fontSize: "0.65rem",
+    fontSize: "0.8rem",
     letterSpacing: "0.08em",
     opacity: 0.7,
     flexShrink: 0,
-    marginTop: 2,
+    marginTop: 3,
   },
   stepText: {
-    fontSize: "0.82rem",
+    fontSize: "1rem",
     color: palette.textMuted,
-    lineHeight: 1.55,
+    lineHeight: 1.6,
   },
   code: {
     fontFamily: FONT_MONO,
-    fontSize: "0.76rem",
+    fontSize: "0.9rem",
     background: "rgba(122,245,202,0.06)",
     color: palette.accent,
     padding: "2px 7px",

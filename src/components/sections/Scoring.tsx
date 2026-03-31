@@ -466,18 +466,9 @@ export default function Scoring() {
           {/* Accent stripe */}
           <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(to right, ${palette.accent}, transparent)` }} />
 
-          <div style={styles.cardHeader}>
-            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <div style={styles.iconBox}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={palette.accent} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-                </svg>
-              </div>
-              <div>
-                <h3 style={styles.cardTitle}>Evolutionary Grading</h3>
-                <span style={styles.cardTag}>EGG</span>
-              </div>
-            </div>
+          <div style={{ textAlign: "center", marginBottom: 16 }}>
+            <h3 style={{ ...styles.cardTitle, fontSize: "1.8rem", marginBottom: 8 }}>Evolutionary Grading</h3>
+            <span style={styles.cardTag}>EGG</span>
           </div>
 
           <p style={styles.cardDesc}>
@@ -498,18 +489,9 @@ export default function Scoring() {
           {/* Accent stripe */}
           <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(to right, ${palette.warn}, transparent)` }} />
 
-          <div style={styles.cardHeader}>
-            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <div style={{ ...styles.iconBox, background: "rgba(245,200,122,0.08)", borderColor: "rgba(245,200,122,0.2)" }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={palette.warn} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                </svg>
-              </div>
-              <div>
-                <h3 style={styles.cardTitle}>Intent-Outcome Divergence</h3>
-                <span style={{ ...styles.cardTag, color: palette.warn, background: "rgba(245,200,122,0.08)", borderColor: "rgba(245,200,122,0.2)" }}>IOD</span>
-              </div>
-            </div>
+          <div style={{ textAlign: "center", marginBottom: 16 }}>
+            <h3 style={{ ...styles.cardTitle, fontSize: "1.8rem", marginBottom: 8 }}>Intent-Outcome Divergence</h3>
+            <span style={{ ...styles.cardTag, color: palette.warn, background: "rgba(245,200,122,0.08)", borderColor: "rgba(245,200,122,0.2)" }}>IOD</span>
           </div>
 
           <p style={styles.cardDesc}>
