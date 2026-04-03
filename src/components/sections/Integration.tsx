@@ -19,7 +19,7 @@ export default function Integration() {
                 Three lines to a Council verdict.
               </h2>
               <p style={{ ...S.sectionSub, margin: "0 auto" }}>
-                Route any internal AI tool&#39;s output through the Council API. Get a multi-agent consensus score, flagged issues, and full reasoning — instantly.
+                Route any internal AI tool&#39;s output through the Council API. Get a multi-agent consensus score, flagged issues, and full reasoning, instantly.
               </p>
             </Reveal>
             <Reveal delay={0.1}>

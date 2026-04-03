@@ -14,13 +14,13 @@ const pillars: PillarData[] = [
     {
       num: "01",
       title: "Universal Context Mastery",
-      body: "Full contextual awareness across multi-million-line repositories — where standard context windows fragment and hallucinate.",
+      body: "Full contextual awareness across multi-million-line repositories, where standard context windows fragment and hallucinate.",
       accent: palette.accent,
     },
     {
       num: "02",
       title: "Council of Agents Evaluation",
-      body: "Multiple specialized agents deliberate and reach consensus — eliminating the single-judge failure mode.",
+      body: "Multiple specialized agents deliberate and reach consensus, eliminating the single-judge failure mode.",
       accent: palette.warn,
     },
     {
@@ -41,7 +41,7 @@ export default function Pillars() {
                       Three pillars. One airtight evaluation pipeline.
                     </h2>
                     <p style={{ ...S.sectionSub, margin: "0 auto", textAlign: "center" }}>
-                      Built for the environments where standard evaluators fail — massive codebases, tangled dependencies, zero room for error.
+                      Built for the environments where standard evaluators fail: massive codebases, tangled dependencies, zero room for error.
                     </p>
                   </div>
                 </Reveal>

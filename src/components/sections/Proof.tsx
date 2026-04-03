@@ -42,7 +42,7 @@ export default function Proof() {
                         The &quot;Council of Agents&quot; approach takes the multi-judge consensus methodology pioneered by elite AI teams and packages it as a drop-in API. No bespoke infrastructure. No months of fine-tuning.
                       </p>
                       <div style={{ background: "#dcfce7", borderRadius: 10, padding: "20px 24px", fontSize: "1.02rem", color: "#15803d", border: "1px solid #bbf7d0" }}>
-                        Get <strong>elite-tier evaluation coverage</strong> out of the box — reclaim that 40% of engineering time.
+                        Get <strong>elite-tier evaluation coverage</strong> out of the box. Reclaim that 40% of engineering time.
                       </div>
                     </div>
                   </Reveal>

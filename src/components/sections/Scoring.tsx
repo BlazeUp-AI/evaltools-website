@@ -7,9 +7,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FONT_DISPLAY = "'Instrument Serif', Georgia, serif";
+const FONT_DISPLAY = "'Playfair Display', Georgia, serif";
 const FONT_MONO = "'JetBrains Mono', 'Fira Code', monospace";
-const FONT_BODY = "'DM Sans', 'Helvetica Neue', sans-serif";
+const FONT_BODY = "'Outfit', 'Helvetica Neue', sans-serif";
 
 /* ─────────────────────── EGG Animation ─────────────────────── */
 
@@ -473,7 +473,7 @@ export default function Scoring() {
 
           <p style={styles.cardDesc}>
             Learns from your team&apos;s merged PRs and reverts. Scores AI output against{" "}
-            <em style={{ color: palette.accent }}>your actual review patterns</em> — not a generic rubric.
+            <em style={{ color: palette.accent }}>your actual review patterns</em>, not a generic rubric.
           </p>
 
           <EggAnimation />
@@ -538,6 +538,8 @@ const styles: Record<string, CSSProperties> = {
     position: "relative",
     overflow: "hidden",
     transition: "border-color 0.3s",
+    display: "flex",
+    flexDirection: "column",
   } as CSSProperties,
 
   cardHeader: {
@@ -590,14 +592,15 @@ const styles: Record<string, CSSProperties> = {
     background: "#0b0c10",
     borderRadius: 12,
     border: `1px solid ${palette.border}`,
-    padding: "20px 16px",
+    padding: "24px 20px",
     display: "flex",
     alignItems: "flex-start",
     flexWrap: "wrap",
     gap: 16,
     position: "relative",
     overflow: "hidden",
-    minHeight: 130,
+    minHeight: 280,
+    flex: 1,
   } as CSSProperties,
 
   miniLabel: {

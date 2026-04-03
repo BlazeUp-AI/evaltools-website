@@ -3,9 +3,9 @@ import { useState, useEffect, useRef, CSSProperties } from "react";
 import { S, palette } from "../../styles/theme";
 import Reveal from "../ui/Reveal";
 
-const FONT_DISPLAY = "'Instrument Serif', Georgia, serif";
+const FONT_DISPLAY = "'Playfair Display', Georgia, serif";
 const FONT_MONO = "'JetBrains Mono', 'Fira Code', monospace";
-const FONT_BODY = "'DM Sans', 'Helvetica Neue', sans-serif";
+const FONT_BODY = "'Outfit', 'Helvetica Neue', sans-serif";
 
 /* ── Vault ring SVG built in JSX ── */
 function VaultRing() {
@@ -261,7 +261,7 @@ export default function Privacy() {
           Your code stays yours. Period.
         </h2>
         <p style={S.sectionSub}>
-          We evaluate your AI tools — we never train on your data, expose your proprietary logic, or retain your codebase beyond the evaluation window.
+          We evaluate your AI tools. We never train on your data, expose your proprietary logic, or retain your codebase beyond the evaluation window.
         </p>
       </Reveal>
 
@@ -307,7 +307,7 @@ export default function Privacy() {
                 textTransform: "uppercase",
                 color: "var(--accent)",
               }}>
-                security protocol — all systems nominal
+                security protocol: all systems nominal
               </span>
             </div>
           </Reveal>

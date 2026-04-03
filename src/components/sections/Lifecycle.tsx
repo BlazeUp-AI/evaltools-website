@@ -8,9 +8,9 @@ import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
-const FONT_DISPLAY = "'Instrument Serif', Georgia, serif";
+const FONT_DISPLAY = "'Playfair Display', Georgia, serif";
 const FONT_MONO = "'JetBrains Mono', 'Fira Code', monospace";
-const FONT_BODY = "'DM Sans', 'Helvetica Neue', sans-serif";
+const FONT_BODY = "'Outfit', 'Helvetica Neue', sans-serif";
 
 /* ─── Infinity path data ─── */
 // Left loop = MCP Registry, Right loop = Agent Registry
@@ -248,7 +248,7 @@ export default function Lifecycle() {
           <span style={{ color: palette.textMuted, fontStyle: "italic" }}>One loop.</span>
         </h2>
         <p style={s.sub}>
-          Developers submit. Observal evaluates, documents, and publishes. Agents deploy and get scored in production — continuously.
+          Developers submit. Observal evaluates, documents, and publishes. Agents deploy and get scored in production, continuously.
         </p>
       </div>
 
@@ -341,7 +341,7 @@ export default function Lifecycle() {
           {/* Center Hub Labels */}
           <g className="center-badge">
             <rect x="220" y="236" width="160" height="48" rx="10" fill="#13151c" stroke={palette.accent} strokeWidth="1" opacity="0.95" />
-            <text x="300" y="256" textAnchor="middle" fill={palette.accent} fontSize="11" fontFamily="'DM Sans', sans-serif" fontWeight="700" letterSpacing="0.1em">
+            <text x="300" y="256" textAnchor="middle" fill={palette.accent} fontSize="11" fontFamily="'Outfit', sans-serif" fontWeight="700" letterSpacing="0.1em">
               MCP REGISTRY
             </text>
             <text x="300" y="273" textAnchor="middle" fill="#8b8fa6" fontSize="9" fontFamily="'JetBrains Mono', monospace">
@@ -351,7 +351,7 @@ export default function Lifecycle() {
 
           <g className="center-badge">
             <rect x="820" y="236" width="160" height="48" rx="10" fill="#13151c" stroke={palette.warn} strokeWidth="1" opacity="0.95" />
-            <text x="900" y="256" textAnchor="middle" fill={palette.warn} fontSize="11" fontFamily="'DM Sans', sans-serif" fontWeight="700" letterSpacing="0.1em">
+            <text x="900" y="256" textAnchor="middle" fill={palette.warn} fontSize="11" fontFamily="'Outfit', sans-serif" fontWeight="700" letterSpacing="0.1em">
               AGENT REGISTRY
             </text>
             <text x="900" y="273" textAnchor="middle" fill="#8b8fa6" fontSize="9" fontFamily="'JetBrains Mono', monospace">
@@ -362,7 +362,7 @@ export default function Lifecycle() {
           {/* Crossover label */}
           <g className="center-badge">
             <rect x="548" y="240" width="104" height="40" rx="8" fill="#0e1016" stroke="#2c3050" strokeWidth="1" />
-            <text x="600" y="257" textAnchor="middle" fill="#e4e5eb" fontSize="9" fontFamily="'DM Sans', sans-serif" fontWeight="600" letterSpacing="0.04em">
+            <text x="600" y="257" textAnchor="middle" fill="#e4e5eb" fontSize="9" fontFamily="'Outfit', sans-serif" fontWeight="600" letterSpacing="0.04em">
               OBSERVAL
             </text>
             <text x="600" y="270" textAnchor="middle" fill="#8b8fa6" fontSize="8" fontFamily="'JetBrains Mono', monospace">
@@ -382,7 +382,7 @@ export default function Lifecycle() {
                   textAnchor="middle"
                   fill={color}
                   fontSize="18"
-                  fontFamily="'DM Sans', sans-serif"
+                  fontFamily="'Outfit', sans-serif"
                   fontWeight="700"
                   letterSpacing="0.06em"
                 >
@@ -466,7 +466,7 @@ export default function Lifecycle() {
           {/* MCP Registry badge (top loop center) */}
           <g className="center-badge-v">
             <rect x="160" y="276" width="200" height="48" rx="10" fill="#13151c" stroke={palette.accent} strokeWidth="1" opacity="0.95" />
-            <text x="260" y="296" textAnchor="middle" fill={palette.accent} fontSize="14" fontFamily="'DM Sans', sans-serif" fontWeight="700" letterSpacing="0.1em">
+            <text x="260" y="296" textAnchor="middle" fill={palette.accent} fontSize="14" fontFamily="'Outfit', sans-serif" fontWeight="700" letterSpacing="0.1em">
               MCP REGISTRY
             </text>
             <text x="260" y="314" textAnchor="middle" fill="#8b8fa6" fontSize="11" fontFamily="'JetBrains Mono', monospace">
@@ -477,7 +477,7 @@ export default function Lifecycle() {
           {/* Agent Registry badge (bottom loop center) */}
           <g className="center-badge-v">
             <rect x="150" y="876" width="220" height="48" rx="10" fill="#13151c" stroke={palette.warn} strokeWidth="1" opacity="0.95" />
-            <text x="260" y="896" textAnchor="middle" fill={palette.warn} fontSize="14" fontFamily="'DM Sans', sans-serif" fontWeight="700" letterSpacing="0.1em">
+            <text x="260" y="896" textAnchor="middle" fill={palette.warn} fontSize="14" fontFamily="'Outfit', sans-serif" fontWeight="700" letterSpacing="0.1em">
               AGENT REGISTRY
             </text>
             <text x="260" y="914" textAnchor="middle" fill="#8b8fa6" fontSize="11" fontFamily="'JetBrains Mono', monospace">
@@ -488,7 +488,7 @@ export default function Lifecycle() {
           {/* Crossover badge (center) */}
           <g className="center-badge-v">
             <rect x="195" y="576" width="130" height="48" rx="8" fill="#0e1016" stroke="#2c3050" strokeWidth="1" />
-            <text x="260" y="596" textAnchor="middle" fill="#e4e5eb" fontSize="12" fontFamily="'DM Sans', sans-serif" fontWeight="600" letterSpacing="0.04em">
+            <text x="260" y="596" textAnchor="middle" fill="#e4e5eb" fontSize="12" fontFamily="'Outfit', sans-serif" fontWeight="600" letterSpacing="0.04em">
               OBSERVAL
             </text>
             <text x="260" y="612" textAnchor="middle" fill="#8b8fa6" fontSize="10" fontFamily="'JetBrains Mono', monospace">
@@ -507,7 +507,7 @@ export default function Lifecycle() {
                   textAnchor="middle"
                   fill={color}
                   fontSize="22"
-                  fontFamily="'DM Sans', sans-serif"
+                  fontFamily="'Outfit', sans-serif"
                   fontWeight="700"
                   letterSpacing="0.06em"
                 >
@@ -538,9 +538,6 @@ export default function Lifecycle() {
         <div className="lc-bottom-card" style={s.bottomCard}>
           <div style={{ ...s.bottomStripe, background: palette.accent }} />
           <div style={s.bottomHeader}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={palette.accent} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-            </svg>
             <span style={s.bottomTitle}>MCP Registry</span>
           </div>
           <div style={s.bottomBody}>
@@ -569,12 +566,6 @@ export default function Lifecycle() {
         <div className="lc-bottom-card" style={s.bottomCard}>
           <div style={{ ...s.bottomStripe, background: palette.warn }} />
           <div style={s.bottomHeader}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={palette.warn} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.58-3.25 3.93L12 22" />
-              <path d="M12 2a4 4 0 0 0-4 4c0 1.95 1.4 3.58 3.25 3.93" />
-              <path d="M5 14h14" />
-              <path d="M6 18h12" />
-            </svg>
             <span style={s.bottomTitle}>Agent Registry</span>
           </div>
           <div style={s.bottomBody}>
@@ -603,32 +594,31 @@ export default function Lifecycle() {
         <div className="lc-bottom-card" style={{ ...s.bottomCard, borderColor: palette.borderHi }}>
           <div style={{ ...s.bottomStripe, background: `linear-gradient(to right, ${palette.accent}, ${palette.warn})` }} />
           <div style={s.bottomHeader}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={palette.text} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-              <line x1="8" y1="21" x2="16" y2="21" />
-              <line x1="12" y1="17" x2="12" y2="21" />
-            </svg>
             <span style={s.bottomTitle}>Agent = Prompt + MCPs + Model</span>
           </div>
           <div style={s.bottomBody}>
             <div style={s.compositionRow}>
-              <div style={s.compChip}>
-                <span style={{ color: palette.accent, fontSize: "0.9rem" }}>Prompt</span>
-                <span style={{ color: palette.textMuted, fontSize: "0.78rem" }}>system instructions</span>
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <div style={s.compChip}>
+                  <span style={{ color: palette.accent, fontSize: "0.9rem" }}>Prompt</span>
+                  <span style={{ color: palette.textMuted, fontSize: "0.78rem" }}>system instructions</span>
+                </div>
+                <span style={{ color: palette.border, fontSize: "1.4rem", lineHeight: 1 }}>+</span>
               </div>
-              <span style={{ color: palette.border, fontSize: "1.4rem", lineHeight: 1 }}>+</span>
-              <div style={s.compChip}>
-                <span style={{ color: palette.warn, fontSize: "0.9rem" }}>MCPs</span>
-                <span style={{ color: palette.textMuted, fontSize: "0.78rem" }}>tool servers</span>
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <div style={s.compChip}>
+                  <span style={{ color: palette.warn, fontSize: "0.9rem" }}>MCPs</span>
+                  <span style={{ color: palette.textMuted, fontSize: "0.78rem" }}>tool servers</span>
+                </div>
+                <span style={{ color: palette.border, fontSize: "1.4rem", lineHeight: 1 }}>+</span>
               </div>
-              <span style={{ color: palette.border, fontSize: "1.4rem", lineHeight: 1 }}>+</span>
               <div style={s.compChip}>
                 <span style={{ color: "#82aaff", fontSize: "0.9rem" }}>Model</span>
                 <span style={{ color: palette.textMuted, fontSize: "0.78rem" }}>LLM config</span>
               </div>
             </div>
             <div style={{ fontSize: "0.95rem", color: palette.textMuted, lineHeight: 1.6, marginTop: 12 }}>
-              Every agent is a declarative composition. Submit the repo, Observal handles the rest — evaluation, documentation, and production monitoring via SLM-as-a-judge.
+              Every agent is a declarative composition. Submit the repo, Observal handles the rest: evaluation, documentation, and production monitoring via SLM-as-a-judge.
             </div>
           </div>
         </div>
@@ -725,7 +715,7 @@ const s: Record<string, CSSProperties> = {
   bottomHeader: {
     display: "flex",
     alignItems: "center",
-    gap: 10,
+    justifyContent: "center",
     marginBottom: 18,
   },
   bottomTitle: {
