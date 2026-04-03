@@ -109,12 +109,12 @@ export default function HeroAnimation() {
                       </div>
                       <div style={s.termBody}>
                           <span style={{ color: "#8b8fa6" }}>~/observal-cli</span>
-                          <div style={{ display: "flex", alignItems: "center", marginTop: 4 }}>
-                              <span style={{ color: "rgba(122,245,202,0.8)", marginRight: 8 }}>❯</span>
-                              <div ref={terminalCmd} style={{ overflow: "hidden", whiteSpace: "nowrap" }}>
+                          <div style={{ display: "flex", alignItems: "center", marginTop: 6 }}>
+                              <span style={{ color: "rgba(122,245,202,0.8)", marginRight: 8, flexShrink: 0 }}>❯</span>
+                              <div ref={terminalCmd} style={{ overflow: "hidden", whiteSpace: "nowrap", display: "inline-flex", alignItems: "center" }}>
                                   <span style={{ color: "#e4e5eb" }}>mcp register db-core</span>
+                                  <span className="cursor-blink" style={{ display: "inline-block", width: 6, height: 14, background: "rgba(228,229,235,0.8)", marginLeft: 2, flexShrink: 0 }} />
                               </div>
-                              <span className="cursor-blink" style={{ display: "inline-block", width: 6, height: 12, background: "rgba(228,229,235,0.8)", marginLeft: 4 }} />
                           </div>
                       </div>
                   </div>
@@ -287,17 +287,17 @@ const s: Record<string, CSSProperties> = {
     background: "#13151c",
     border: "1px solid #1e2130",
     borderRadius: 10,
-    padding: 16,
+    padding: "18px 18px",
     boxShadow: "0 10px 30px rgba(0,0,0,0.3)",
   },
   termLabel: {
     fontSize: 9,
     color: "#8b8fa6",
-    marginBottom: 12,
+    marginBottom: 14,
     letterSpacing: "0.1em",
     textTransform: "uppercase",
     borderBottom: "1px solid rgba(30,33,48,0.5)",
-    paddingBottom: 6,
+    paddingBottom: 8,
   },
   termDot: {
     width: 8,
@@ -310,7 +310,8 @@ const s: Record<string, CSSProperties> = {
     display: "flex",
     flexDirection: "column",
     fontSize: 11,
-    lineHeight: 1.6,
+    lineHeight: 1.8,
+    gap: 2,
   },
   connectorWrap: {
     width: 1,

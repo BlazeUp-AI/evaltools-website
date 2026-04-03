@@ -195,3 +195,16 @@ a {
     margin-right: auto !important;
   }
 }
+
+/* ─── Large screen scaling (27"+ monitors, ~2560px) ─── */
+@media (min-width: 1800px) {
+  html {
+    font-size: 118%;
+  }
+}
+
+@media (min-width: 2200px) {
+  html {
+    font-size: 130%;
+  }
+}

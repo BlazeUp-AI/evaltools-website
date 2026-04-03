@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 
-const FONT_DISPLAY: string = "'Instrument Serif', Georgia, serif";
-const FONT_BODY: string = "'DM Sans', 'Helvetica Neue', sans-serif";
+const FONT_DISPLAY: string = "'Playfair Display', Georgia, serif";
+const FONT_BODY: string = "'Outfit', 'Helvetica Neue', sans-serif";
 const FONT_MONO: string = "'JetBrains Mono', 'Fira Code', monospace";
 
 export interface Palette {
@@ -142,7 +142,7 @@ export const S: Styles = {
     transition: "transform 0.15s, box-shadow 0.2s",
   },
   section: {
-    maxWidth: 1440, margin: "0 auto", padding: "0 clamp(16px, 4vw, 32px)",
+    maxWidth: 1800, margin: "0 auto", padding: "0 clamp(16px, 5vw, 64px)",
   },
 
   // ─ Hero ─
@@ -161,29 +161,29 @@ export const S: Styles = {
     width: "fit-content",
   },
   heroH1: {
-    fontFamily: FONT_DISPLAY, fontSize: "clamp(2.6rem, 5.5vw, 4.8rem)",
+    fontFamily: FONT_DISPLAY, fontSize: "clamp(2.6rem, 5.5vw, 5.4rem)",
     lineHeight: 1.08, letterSpacing: "-0.03em", fontWeight: 400,
-    maxWidth: 900, marginBottom: 24,
+    maxWidth: 960, marginBottom: 28,
   },
   heroSub: {
-    fontSize: "1.15rem", color: palette.textMuted, maxWidth: 620,
-    marginBottom: 40, lineHeight: 1.7,
+    fontSize: "clamp(1.1rem, 1.3vw, 1.35rem)", color: palette.textMuted, maxWidth: 660,
+    marginBottom: 44, lineHeight: 1.75,
   },
   heroCtas: {
     display: "flex", gap: 16, flexWrap: "wrap", alignItems: "center",
   },
   btnPrimary: {
-    padding: "14px clamp(20px, 4vw, 36px)", borderRadius: 8,
+    padding: "14px clamp(20px, 4vw, 40px)", borderRadius: 8,
     background: palette.accent, color: "#08090c",
-    fontWeight: 700, fontSize: "0.92rem", border: "none", cursor: "pointer",
+    fontWeight: 700, fontSize: "clamp(0.9rem, 1vw, 1.05rem)", border: "none", cursor: "pointer",
     letterSpacing: "0.03em",
     boxShadow: `0 0 40px ${palette.accentGlow}`,
     transition: "transform 0.15s",
   },
   btnGhost: {
-    padding: "14px clamp(20px, 4vw, 36px)", borderRadius: 8,
+    padding: "14px clamp(20px, 4vw, 40px)", borderRadius: 8,
     background: "transparent", color: palette.text,
-    fontWeight: 600, fontSize: "0.92rem",
+    fontWeight: 600, fontSize: "clamp(0.9rem, 1vw, 1.05rem)",
     border: `1px solid ${palette.borderHi}`, cursor: "pointer",
     transition: "border-color 0.2s",
   },
@@ -191,7 +191,7 @@ export const S: Styles = {
     display: "flex", gap: 48, marginTop: 72, flexWrap: "wrap",
   },
   statNum: {
-    fontFamily: FONT_DISPLAY, fontSize: "2.6rem", color: palette.accent,
+    fontFamily: FONT_DISPLAY, fontSize: "clamp(2.4rem, 3vw, 3.2rem)", color: palette.accent,
     lineHeight: 1,
   },
   statLabel: {
@@ -216,11 +216,11 @@ export const S: Styles = {
     opacity: 0.7,
   },
   pillarH3: {
-    fontFamily: FONT_DISPLAY, fontSize: "1.55rem", marginBottom: 16,
+    fontFamily: FONT_DISPLAY, fontSize: "clamp(1.5rem, 1.8vw, 1.8rem)", marginBottom: 16,
     lineHeight: 1.2, letterSpacing: "-0.02em",
   },
   pillarP: {
-    fontSize: "0.95rem", color: palette.textMuted, lineHeight: 1.7,
+    fontSize: "clamp(0.92rem, 1vw, 1.05rem)", color: palette.textMuted, lineHeight: 1.75,
   },
 
   // ─ Proof ─
@@ -243,7 +243,7 @@ export const S: Styles = {
     textTransform: "uppercase", marginBottom: 16,
   },
   proofH3: {
-    fontFamily: FONT_DISPLAY, fontSize: "1.65rem", marginBottom: 16,
+    fontFamily: FONT_DISPLAY, fontSize: "clamp(1.6rem, 1.9vw, 2rem)", marginBottom: 16,
     lineHeight: 1.2, letterSpacing: "-0.02em",
   },
 
@@ -289,11 +289,11 @@ export const S: Styles = {
     textTransform: "uppercase", color: palette.accent, marginBottom: 14,
   },
   sectionH2: {
-    fontFamily: FONT_DISPLAY, fontSize: "clamp(1.9rem, 3.4vw, 2.9rem)",
-    lineHeight: 1.1, letterSpacing: "-0.025em", maxWidth: 700, marginBottom: 12,
+    fontFamily: FONT_DISPLAY, fontSize: "clamp(1.9rem, 3.4vw, 3.4rem)",
+    lineHeight: 1.1, letterSpacing: "-0.025em", maxWidth: 800, marginBottom: 14,
   },
   sectionSub: {
-    fontSize: "1.05rem", color: palette.textMuted, maxWidth: 580, lineHeight: 1.7,
+    fontSize: "clamp(1rem, 1.2vw, 1.2rem)", color: palette.textMuted, maxWidth: 640, lineHeight: 1.75,
   },
   divider: {
     height: 1, background: palette.border, margin: "100px 0",
