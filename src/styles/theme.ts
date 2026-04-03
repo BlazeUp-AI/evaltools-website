@@ -251,18 +251,18 @@ export const S: Styles = {
   codeWrap: {
     background: "#0c0d12", borderRadius: 16,
     border: `1px solid #1e2130`, overflow: "hidden",
-    marginTop: 48, maxWidth: 760, marginLeft: "auto", marginRight: "auto",
+    marginTop: 48, maxWidth: 960, marginLeft: "auto", marginRight: "auto",
   },
   codeBar: {
-    display: "flex", alignItems: "center", gap: 8, padding: "14px 20px",
+    display: "flex", alignItems: "center", gap: 8, padding: "16px 24px",
     background: "#101218", borderBottom: `1px solid #1e2130`,
   },
   codeDot: (c: string): CSSProperties => ({
     width: 11, height: 11, borderRadius: "50%", background: c,
   }),
   codeBody: {
-    padding: "28px 28px", fontFamily: FONT_MONO, fontSize: "0.88rem",
-    lineHeight: 1.9, overflowX: "auto", color: "#8b8fa6",
+    padding: "36px 36px", fontFamily: FONT_MONO, fontSize: "clamp(0.92rem, 1.1vw, 1.08rem)",
+    lineHeight: 2, overflowX: "auto", color: "#8b8fa6",
   },
 
   // ─ Privacy ─

@@ -60,11 +60,12 @@ export default function Hero() {
 
         {/* RIGHT COLUMN: The GSAP Animation — hidden on small screens */}
         <div style={{
-          flex: "1 1 400px",
+          flex: "1 1 500px",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           zIndex: 10,
+          minHeight: 580,
         }}>
           <Reveal delay={0.4}>
              <HeroAnimation />

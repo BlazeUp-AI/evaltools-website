@@ -1,11 +1,28 @@
 "use client";
 
-import { useRef, CSSProperties } from "react";
+import { useRef, useEffect, useState, CSSProperties } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 export default function HeroAnimation() {
   const container = useRef<HTMLDivElement>(null);
+  const scaleWrap = useRef<HTMLDivElement>(null);
+
+  /* Responsive scaling: base design is 750px wide.
+     On viewports wider than ~1200px, scale the whole animation up proportionally. */
+  const [scale, setScale] = useState(1);
+  useEffect(() => {
+    function calc() {
+      const vw = window.innerWidth;
+      if (vw >= 2200) setScale(1.55);
+      else if (vw >= 1800) setScale(1.3);
+      else if (vw >= 1440) setScale(1.1);
+      else setScale(1);
+    }
+    calc();
+    window.addEventListener("resize", calc);
+    return () => window.removeEventListener("resize", calc);
+  }, []);
 
   const leftTerminal = useRef<HTMLDivElement>(null);
   const terminalCmd = useRef<HTMLDivElement>(null);
@@ -74,6 +91,15 @@ export default function HeroAnimation() {
   }, { scope: container });
 
   return (
+      <div ref={scaleWrap} style={{
+        transform: `scale(${scale})`,
+        transformOrigin: "center center",
+        transition: "transform 0.3s ease",
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}>
       <div ref={container} style={s.container}>
           <style>{`
             .cursor-blink { animation: blink 1s step-end infinite; }
@@ -226,6 +252,7 @@ export default function HeroAnimation() {
               </div>
 
           </div>
+      </div>
       </div>
   );
 }
