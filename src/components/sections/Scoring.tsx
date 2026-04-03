@@ -1,5 +1,3 @@
-"use client";
-
 import { useRef, useEffect, CSSProperties } from "react";
 import { palette } from "../../styles/theme";
 import gsap from "gsap";

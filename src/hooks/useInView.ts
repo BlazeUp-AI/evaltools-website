@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect, useRef } from "react";
 
 export function useInView(threshold: number = 0.15): [React.RefObject<HTMLDivElement | null>, boolean] {

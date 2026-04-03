@@ -1,4 +1,3 @@
-"use client";
 import { useState, useEffect, useRef, CSSProperties } from "react";
 import { S, palette } from "../../styles/theme";
 import Reveal from "../ui/Reveal";

@@ -1,5 +1,3 @@
-"use client";
-
 import { palette } from "../../styles/theme";
 
 interface OrbProps {

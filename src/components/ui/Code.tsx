@@ -1,5 +1,3 @@
-"use client";
-
 import { CSSProperties, ReactNode } from "react";
 import { palette, S } from "../../styles/theme";
 

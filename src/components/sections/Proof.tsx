@@ -1,5 +1,3 @@
-"use client";
-
 import { S, palette } from "../../styles/theme";
 import { CSSProperties } from "react";
 import Reveal from "../ui/Reveal";

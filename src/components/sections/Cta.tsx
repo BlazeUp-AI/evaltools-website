@@ -1,4 +1,3 @@
-"use client";
 import { CSSProperties, MouseEvent } from "react";
 import { S, palette } from "../../styles/theme";
 import Reveal from "../ui/Reveal";
